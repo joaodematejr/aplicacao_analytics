@@ -1,0 +1,24 @@
+{
+  "name": "aplicacao_analytics",
+  "version": "1.1.0",
+  "description": "Projeto Analytics",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/joaodematejr/aplicacao_analytics.git"
+  },
+  "author": "João Dematé",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/joaodematejr/aplicacao_analytics/issues"
+  },
+  "homepage": "https://github.com/joaodematejr/aplicacao_analytics#readme",
+  "dependencies": {
+    "body-parser": "^1.18.3",
+    "consign": "^0.1.6",
+    "express": "^4.16.4"
+  }
+}
