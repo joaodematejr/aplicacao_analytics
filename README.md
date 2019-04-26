@@ -1,5 +1,5 @@
 # aplicacao_analytics
-Projeto Aula Aberta Maio 2019 Aplicação Analytics
+Aplicação Analytics
 
 Faculdade Cesusc
 
