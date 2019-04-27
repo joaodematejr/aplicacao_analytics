@@ -1,7 +1,7 @@
 {
   "name": "aplicacao_analytics",
   "version": "1.1.0",
-  "description": "Projeto Analytics",
+  "description": "Projeto Analytics BackEnd",
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
