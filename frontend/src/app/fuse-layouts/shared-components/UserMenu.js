@@ -24,7 +24,7 @@ class UserMenu extends Component {
                     <Avatar className="" alt="user photo" src={'http://www.mds.gov.br/webarquivos/arquivo/mds_pra_vc/botoes/Carta_de_Servi%C3%A7o__200x200_CIDADAO.png'} />
                     <div className="hidden md:flex flex-col ml-12 items-start">
                         <Typography component="span" className="normal-case font-600 flex">
-                            Administrador
+                            João
                         </Typography>
                         <Typography className="text-11 capitalize" color="textSecondary">
                             administrador

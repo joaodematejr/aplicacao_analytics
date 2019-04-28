@@ -7,7 +7,7 @@ const Widget9 = ({data}) => {
 
             <div className="p-16 pr-4 flex flex-row items-center justify-between">
 
-                <Typography className="h1 pr-16">Top campaigns</Typography>
+                <Typography className="h1 pr-16">Principais campanhas</Typography>
 
                 <div>
                     <IconButton aria-label="more">

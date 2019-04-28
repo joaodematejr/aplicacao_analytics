@@ -113,7 +113,7 @@ function BottomAppBar(props) {
           {messages.map(({ id, primary, secondary, person }) => (
             <Fragment key={id}>
               {id === 1 && <ListSubheader className={classes.subHeader}>Hoje</ListSubheader>}
-              {id === 3 && <ListSubheader className={classes.subHeader}>Yesterday</ListSubheader>}
+              {id === 3 && <ListSubheader className={classes.subHeader}>Ontem</ListSubheader>}
               <ListItem button>
                 <Avatar alt="Profile Picture" src={person} />
                 <ListItemText primary={primary} secondary={secondary} />

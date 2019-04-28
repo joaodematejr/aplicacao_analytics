@@ -1,6 +1,6 @@
-import React, {Component} from 'react';
-import {withStyles, Button, Card, Typography} from '@material-ui/core';
-import {Line} from 'react-chartjs-2';
+import React, { Component } from 'react';
+import { withStyles, Button, Card, Typography } from '@material-ui/core';
+import { Line } from 'react-chartjs-2';
 import _ from '@lodash';
 
 class Widget5 extends Component {
@@ -10,24 +10,23 @@ class Widget5 extends Component {
     };
 
     setDataSet = (dataset) => {
-        this.setState({dataset});
+        this.setState({ dataset });
     };
 
-    render()
-    {
-        const {data: dataRaw, theme} = this.props;
-        const {dataset} = this.state;
+    render() {
+        const { data: dataRaw, theme } = this.props;
+        const { dataset } = this.state;
         const data = _.merge({}, dataRaw);
         const dataWithColors = data.datasets[dataset].map((obj, index) => {
             const palette = theme.palette[index === 0 ? 'primary' : 'secondary'];
             return {
                 ...obj,
-                borderColor              : palette.main,
-                backgroundColor          : palette.main,
-                pointBackgroundColor     : palette.dark,
+                borderColor: palette.main,
+                backgroundColor: palette.main,
+                pointBackgroundColor: palette.dark,
                 pointHoverBackgroundColor: palette.main,
-                pointBorderColor         : palette.contrastText,
-                pointHoverBorderColor    : palette.contrastText
+                pointBorderColor: palette.contrastText,
+                pointHoverBorderColor: palette.contrastText
             }
         });
 
@@ -37,7 +36,7 @@ class Widget5 extends Component {
                 <div className="relative p-24 flex flex-row items-center justify-between">
 
                     <div className="flex flex-col">
-                        <Typography className="h3 sm:h2">Visitors & Page views</Typography>
+                        <Typography className="h3 sm:h2">Visitantes e exibições de página</Typography>
                     </div>
 
                     <div className="flex flex-row items-center">
@@ -58,7 +57,7 @@ class Widget5 extends Component {
                 <Typography className="relative h-200 sm:h-320 sm:pb-16">
                     <Line
                         data={{
-                            labels  : data.labels,
+                            labels: data.labels,
                             datasets: dataWithColors
                         }}
                         options={data.options}
@@ -69,4 +68,4 @@ class Widget5 extends Component {
     }
 }
 
-export default withStyles(null, {withTheme: true})(Widget5);
+export default withStyles(null, { withTheme: true })(Widget5);

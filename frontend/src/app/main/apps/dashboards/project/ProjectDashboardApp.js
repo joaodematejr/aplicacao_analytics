@@ -1,9 +1,9 @@
-import React, {Component} from 'react';
-import {Menu, MenuItem, Hidden, Icon, IconButton, Tab, Tabs, Typography, withStyles} from '@material-ui/core';
-import {FuseAnimateGroup, FusePageSimple} from '@fuse';
-import {connect} from 'react-redux';
-import {withRouter} from 'react-router-dom'
-import {bindActionCreators} from 'redux';
+import React, { Component } from 'react';
+import { Menu, MenuItem, Hidden, Icon, IconButton, Tab, Tabs, Typography, withStyles } from '@material-ui/core';
+import { FuseAnimateGroup, FusePageSimple } from '@fuse';
+import { connect } from 'react-redux';
+import { withRouter } from 'react-router-dom'
+import { bindActionCreators } from 'redux';
 import withReducer from 'app/store/withReducer';
 import * as Actions from './store/actions'
 import reducer from './store/reducers';
@@ -24,34 +24,34 @@ import WidgetNow from './widgets/WidgetNow';
 import WidgetWeather from './widgets/WidgetWeather';
 
 const styles = theme => ({
-        content          : {
-            '& canvas': {
-                maxHeight: '100%'
-            }
-        },
-        selectedProject  : {
-            background  : theme.palette.primary.main,
-            color       : theme.palette.primary.contrastText,
-            borderRadius: '8px 0 0 0'
-        },
-        projectMenuButton: {
-            background  : theme.palette.primary.main,
-            color       : theme.palette.primary.contrastText,
-            borderRadius: '0 8px 0 0',
-            marginLeft  : 1
-        },
-    }
+    content: {
+        '& canvas': {
+            maxHeight: '100%'
+        }
+    },
+    selectedProject: {
+        background: theme.palette.primary.main,
+        color: theme.palette.primary.contrastText,
+        borderRadius: '8px 0 0 0'
+    },
+    projectMenuButton: {
+        background: theme.palette.primary.main,
+        color: theme.palette.primary.contrastText,
+        borderRadius: '0 8px 0 0',
+        marginLeft: 1
+    },
+}
 );
 
 class ProjectDashboardApp extends Component {
     state = {
-        tabValue         : 0,
+        tabValue: 0,
         selectedProjectId: 1,
-        projectMenuEl    : null
+        projectMenuEl: null
     };
 
     handleChangeTab = (event, tabValue) => {
-        this.setState({tabValue});
+        this.setState({ tabValue });
     };
 
     handleChangeProject = selectedProjectId => {
@@ -62,41 +62,38 @@ class ProjectDashboardApp extends Component {
     };
 
     handleOpenProjectMenu = event => {
-        this.setState({projectMenuEl: event.currentTarget});
+        this.setState({ projectMenuEl: event.currentTarget });
     };
 
     handleCloseProjectMenu = () => {
-        this.setState({projectMenuEl: null});
+        this.setState({ projectMenuEl: null });
     };
 
-    componentDidMount()
-    {
+    componentDidMount() {
         this.props.getWidgets();
         this.props.getProjects();
     }
 
-    render()
-    {
-        const {widgets, projects, classes} = this.props;
-        const {tabValue, selectedProjectId, projectMenuEl} = this.state;
+    render() {
+        const { widgets, projects, classes } = this.props;
+        const { tabValue, selectedProjectId, projectMenuEl } = this.state;
 
-        if ( !widgets || !projects )
-        {
+        if (!widgets || !projects) {
             return null;
         }
 
         return (
             <FusePageSimple
                 classes={{
-                    header      : "min-h-160 h-160",
-                    toolbar     : "min-h-48 h-48",
+                    header: "min-h-160 h-160",
+                    toolbar: "min-h-48 h-48",
                     rightSidebar: "w-288",
-                    content     : classes.content,
+                    content: classes.content,
                 }}
                 header={
                     <div className="flex flex-col justify-between flex-1 px-24 pt-24">
                         <div className="flex justify-between items-start">
-                            <Typography className="py-0 sm:py-24" variant="h4">Welcome back, John!</Typography>
+                            <Typography className="py-0 sm:py-24" variant="h4">Bem vindo de volta, João!</Typography>
                             <Hidden lgUp>
                                 <IconButton
                                     onClick={(ev) => this.pageLayout.toggleRightSidebar()}
@@ -145,44 +142,44 @@ class ProjectDashboardApp extends Component {
                         scrollButtons="off"
                         className="w-full border-b-1 px-24"
                     >
-                        <Tab className="text-14 font-600 normal-case" label="Home"/>
-                        <Tab className="text-14 font-600 normal-case" label="Budget Summary"/>
-                        <Tab className="text-14 font-600 normal-case" label="Team Members"/>
+                        <Tab className="text-14 font-600 normal-case" label="Home" />
+                        <Tab className="text-14 font-600 normal-case" label="Budget Summary" />
+                        <Tab className="text-14 font-600 normal-case" label="Team Members" />
                     </Tabs>
                 }
                 content={
                     <div className="p-12">
                         {tabValue === 0 &&
-                        (
-                            <FuseAnimateGroup
-                                className="flex flex-wrap"
-                                enter={{
-                                    animation: "transition.slideUpBigIn"
-                                }}
-                            >
-                                <div className="widget flex w-full sm:w-1/2 md:w-1/4 p-12">
-                                    <Widget1 widget={widgets.widget1}/>
-                                </div>
-                                <div className="widget flex w-full sm:w-1/2 md:w-1/4 p-12">
-                                    <Widget2 widget={widgets.widget2}/>
-                                </div>
-                                <div className="widget flex w-full sm:w-1/2 md:w-1/4 p-12">
-                                    <Widget3 widget={widgets.widget3}/>
-                                </div>
-                                <div className="widget flex w-full sm:w-1/2 md:w-1/4 p-12">
-                                    <Widget4 widget={widgets.widget4}/>
-                                </div>
-                                <div className="widget flex w-full p-12">
-                                    <Widget5 widget={widgets.widget5}/>
-                                </div>
-                                <div className="widget flex w-full sm:w-1/2 p-12">
-                                    <Widget6 widget={widgets.widget6}/>
-                                </div>
-                                <div className="widget flex w-full sm:w-1/2 p-12">
-                                    <Widget7 widget={widgets.widget7}/>
-                                </div>
-                            </FuseAnimateGroup>
-                        )}
+                            (
+                                <FuseAnimateGroup
+                                    className="flex flex-wrap"
+                                    enter={{
+                                        animation: "transition.slideUpBigIn"
+                                    }}
+                                >
+                                    <div className="widget flex w-full sm:w-1/2 md:w-1/4 p-12">
+                                        <Widget1 widget={widgets.widget1} />
+                                    </div>
+                                    <div className="widget flex w-full sm:w-1/2 md:w-1/4 p-12">
+                                        <Widget2 widget={widgets.widget2} />
+                                    </div>
+                                    <div className="widget flex w-full sm:w-1/2 md:w-1/4 p-12">
+                                        <Widget3 widget={widgets.widget3} />
+                                    </div>
+                                    <div className="widget flex w-full sm:w-1/2 md:w-1/4 p-12">
+                                        <Widget4 widget={widgets.widget4} />
+                                    </div>
+                                    <div className="widget flex w-full p-12">
+                                        <Widget5 widget={widgets.widget5} />
+                                    </div>
+                                    <div className="widget flex w-full sm:w-1/2 p-12">
+                                        <Widget6 widget={widgets.widget6} />
+                                    </div>
+                                    <div className="widget flex w-full sm:w-1/2 p-12">
+                                        <Widget7 widget={widgets.widget7} />
+                                    </div>
+                                </FuseAnimateGroup>
+                            )}
                         {tabValue === 1 && (
                             <FuseAnimateGroup
                                 className="flex flex-wrap"
@@ -191,13 +188,13 @@ class ProjectDashboardApp extends Component {
                                 }}
                             >
                                 <div className="widget flex w-full sm:w-1/2 p-12">
-                                    <Widget8 widget={widgets.widget8}/>
+                                    <Widget8 widget={widgets.widget8} />
                                 </div>
                                 <div className="widget flex w-full sm:w-1/2 p-12">
-                                    <Widget9 widget={widgets.widget9}/>
+                                    <Widget9 widget={widgets.widget9} />
                                 </div>
                                 <div className="widget flex w-full p-12">
-                                    <Widget10 widget={widgets.widget10}/>
+                                    <Widget10 widget={widgets.widget10} />
                                 </div>
                             </FuseAnimateGroup>
                         )}
@@ -209,7 +206,7 @@ class ProjectDashboardApp extends Component {
                                 }}
                             >
                                 <div className="widget flex w-full p-12">
-                                    <Widget11 widget={widgets.widget11}/>
+                                    <Widget11 widget={widgets.widget11} />
                                 </div>
                             </FuseAnimateGroup>
                         )}
@@ -223,10 +220,10 @@ class ProjectDashboardApp extends Component {
                         }}
                     >
                         <div className="widget w-full p-12">
-                            <WidgetNow/>
+                            <WidgetNow />
                         </div>
                         <div className="widget w-full p-12">
-                            <WidgetWeather widget={widgets.weatherWidget}/>
+                            <WidgetWeather widget={widgets.weatherWidget} />
                         </div>
                     </FuseAnimateGroup>
                 }
@@ -238,20 +235,18 @@ class ProjectDashboardApp extends Component {
     };
 }
 
-function mapDispatchToProps(dispatch)
-{
+function mapDispatchToProps(dispatch) {
     return bindActionCreators({
-        getWidgets : Actions.getWidgets,
+        getWidgets: Actions.getWidgets,
         getProjects: Actions.getProjects
     }, dispatch);
 }
 
-function mapStateToProps({projectDashboardApp})
-{
+function mapStateToProps({ projectDashboardApp }) {
     return {
-        widgets : projectDashboardApp.widgets,
+        widgets: projectDashboardApp.widgets,
         projects: projectDashboardApp.projects
     }
 }
 
-export default withReducer('projectDashboardApp', reducer)(withStyles(styles, {withTheme: true})(withRouter(connect(mapStateToProps, mapDispatchToProps)(ProjectDashboardApp))));
+export default withReducer('projectDashboardApp', reducer)(withStyles(styles, { withTheme: true })(withRouter(connect(mapStateToProps, mapDispatchToProps)(ProjectDashboardApp))));

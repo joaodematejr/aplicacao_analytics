@@ -1,13 +1,13 @@
-import React, {Component} from 'react';
-import {withStyles, Button, MuiThemeProvider, Typography} from '@material-ui/core';
-import {FuseAnimate} from '@fuse';
-import {Line} from 'react-chartjs-2';
+import React, { Component } from 'react';
+import { withStyles, Button, MuiThemeProvider, Typography } from '@material-ui/core';
+import { FuseAnimate } from '@fuse';
+import { Line } from 'react-chartjs-2';
 import _ from '@lodash';
 import connect from 'react-redux/es/connect/connect';
 
 const styles = theme => ({
     root: {
-        background     : 'linear-gradient(to right, ' + theme.palette.primary.dark + ' 0%, ' + theme.palette.primary.main + ' 100%)',
+        background: 'linear-gradient(to right, ' + theme.palette.primary.dark + ' 0%, ' + theme.palette.primary.main + ' 100%)',
     }
 });
 
@@ -18,22 +18,21 @@ class Widget1 extends Component {
     };
 
     setDataSet = (dataset) => {
-        this.setState({dataset});
+        this.setState({ dataset });
     };
 
-    render()
-    {
-        const {classes, mainThemeDark, data: dataRaw, theme} = this.props;
-        const {dataset} = this.state;
+    render() {
+        const { classes, mainThemeDark, data: dataRaw, theme } = this.props;
+        const { dataset } = this.state;
         const data = _.merge({}, dataRaw);
         const dataWithColors = data.datasets[dataset].map(obj => ({
             ...obj,
-            borderColor              : theme.palette.secondary.main,
-            backgroundColor          : theme.palette.secondary.main,
-            pointBackgroundColor     : theme.palette.secondary.dark,
+            borderColor: theme.palette.secondary.main,
+            backgroundColor: theme.palette.secondary.main,
+            pointBackgroundColor: theme.palette.secondary.dark,
             pointHoverBackgroundColor: theme.palette.secondary.main,
-            pointBorderColor         : theme.palette.secondary.contrastText,
-            pointHoverBorderColor    : theme.palette.secondary.contrastText
+            pointBorderColor: theme.palette.secondary.contrastText,
+            pointHoverBorderColor: theme.palette.secondary.contrastText
         }));
 
         return (
@@ -43,8 +42,8 @@ class Widget1 extends Component {
 
                         <FuseAnimate delay={100}>
                             <div className="flex-col">
-                                <Typography className="h2">Visitors</Typography>
-                                <Typography className="h5" color="textSecondary">Unique visitors by month</Typography>
+                                <Typography className="h2">Visitantes</Typography>
+                                <Typography className="h5" color="textSecondary">Visitantes únicos por mês</Typography>
                             </div>
                         </FuseAnimate>
 
@@ -65,7 +64,7 @@ class Widget1 extends Component {
                     <div className="container relative h-200 sm:h-256 pb-16">
                         <Line
                             data={{
-                                labels  : data.labels,
+                                labels: data.labels,
                                 datasets: dataWithColors
                             }}
                             options={data.options}
@@ -77,11 +76,10 @@ class Widget1 extends Component {
     }
 }
 
-function mapStateToProps({fuse})
-{
+function mapStateToProps({ fuse }) {
     return {
         mainThemeDark: fuse.settings.mainThemeDark
     }
 }
 
-export default withStyles(styles, {withTheme: true})(connect(mapStateToProps)(Widget1));
+export default withStyles(styles, { withTheme: true })(connect(mapStateToProps)(Widget1));

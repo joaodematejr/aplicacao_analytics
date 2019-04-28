@@ -1,12 +1,12 @@
 import React from 'react';
-import {withStyles, Card, Icon, Typography} from '@material-ui/core';
-import {Bar} from 'react-chartjs-2';
+import { withStyles, Card, Icon, Typography } from '@material-ui/core';
+import { Bar } from 'react-chartjs-2';
 
-const Widget2 = ({data, theme}) => {
+const Widget2 = ({ data, theme }) => {
 
     const dataWithColors = data.datasets.map(obj => ({
         ...obj,
-        borderColor    : theme.palette.secondary.main,
+        borderColor: theme.palette.secondary.main,
         backgroundColor: theme.palette.secondary.main
     }));
 
@@ -16,7 +16,7 @@ const Widget2 = ({data, theme}) => {
             <div className="p-16 pb-0 flex flex-row flex-wrap items-end">
 
                 <div className="pr-16">
-                    <Typography className="h3" color="textSecondary">Conversion</Typography>
+                    <Typography className="h3" color="textSecondary">Conversão</Typography>
                     <Typography className="text-56 font-300 leading-none mt-8">
                         {data.conversion.value}
                     </Typography>
@@ -32,19 +32,19 @@ const Widget2 = ({data, theme}) => {
                         )}
                         <Typography>{data.conversion.ofTarget}%</Typography>
                     </div>
-                    <Typography className="ml-4 whitespace-no-wrap">of target</Typography>
+                    <Typography className="ml-4 whitespace-no-wrap">do alvo</Typography>
                 </div>
 
             </div>
 
             <div className="h-96 w-100-p">
                 <Bar data={{
-                    labels  : data.labels,
+                    labels: data.labels,
                     datasets: dataWithColors
-                }} options={data.options}/>
+                }} options={data.options} />
             </div>
         </Card>
     );
 };
 
-export default withStyles(null, {withTheme: true})(Widget2);
+export default withStyles(null, { withTheme: true })(Widget2);

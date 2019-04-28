@@ -1,10 +1,10 @@
 import React from 'react';
-import {withStyles, Card, Icon, Typography} from '@material-ui/core';
-import {connect} from 'react-redux';
-import {Line} from 'react-chartjs-2';
-import {bindActionCreators} from 'redux';
+import { withStyles, Card, Icon, Typography } from '@material-ui/core';
+import { connect } from 'react-redux';
+import { Line } from 'react-chartjs-2';
+import { bindActionCreators } from 'redux';
 
-const Widget3 = ({data, theme}) => {
+const Widget3 = ({ data, theme }) => {
 
     const dataWithColors = data.datasets.map(obj => ({
         ...obj,
@@ -17,7 +17,7 @@ const Widget3 = ({data, theme}) => {
             <div className="p-16 pb-0 flex flex-row items-end flex-wrap">
 
                 <div className="pr-16">
-                    <Typography className="h3" color="textSecondary">Impressions</Typography>
+                    <Typography className="h3" color="textSecondary">Impressões</Typography>
                     <Typography className="text-56 font-300 leading-none mt-8">
                         {data.impressions.value}
                     </Typography>
@@ -33,7 +33,7 @@ const Widget3 = ({data, theme}) => {
                         )}
                         <Typography>{data.impressions.ofTarget}%</Typography>
                     </div>
-                    <Typography className="ml-4 whitespace-no-wrap">of target</Typography>
+                    <Typography className="ml-4 whitespace-no-wrap">do alvo</Typography>
                 </div>
 
             </div>
@@ -41,7 +41,7 @@ const Widget3 = ({data, theme}) => {
             <div className="h-96 w-100-p">
                 <Line
                     data={{
-                        labels  : data.labels,
+                        labels: data.labels,
                         datasets: dataWithColors
                     }}
                     options={data.options}
@@ -51,16 +51,14 @@ const Widget3 = ({data, theme}) => {
     );
 };
 
-function mapDispatchToProps(dispatch)
-{
+function mapDispatchToProps(dispatch) {
     return bindActionCreators({}, dispatch);
 }
 
-function mapStateToProps({analyticsDashboardApp})
-{
+function mapStateToProps({ analyticsDashboardApp }) {
     return {
         widgets: analyticsDashboardApp.widgets.data
     }
 }
 
-export default withStyles(null, {withTheme: true})(connect(mapStateToProps, mapDispatchToProps)(Widget3));
+export default withStyles(null, { withTheme: true })(connect(mapStateToProps, mapDispatchToProps)(Widget3));

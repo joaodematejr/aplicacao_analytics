@@ -1,6 +1,6 @@
-import React, {Component} from 'react';
-import {withStyles, Select, Button, Card, Divider, FormControl, Icon, MenuItem, Typography} from '@material-ui/core';
-import {Doughnut} from 'react-chartjs-2';
+import React, { Component } from 'react';
+import { withStyles, Select, Button, Card, Divider, FormControl, Icon, MenuItem, Typography } from '@material-ui/core';
+import { Doughnut } from 'react-chartjs-2';
 import _ from '@lodash';
 
 class Widget7 extends Component {
@@ -10,18 +10,17 @@ class Widget7 extends Component {
     };
 
     setDataSet = (ev) => {
-        this.setState({dataset: ev.target.value});
+        this.setState({ dataset: ev.target.value });
     };
 
-    render()
-    {
-        const {data: dataRaw, theme} = this.props;
-        const {dataset} = this.state;
+    render() {
+        const { data: dataRaw, theme } = this.props;
+        const { dataset } = this.state;
         const data = _.merge({}, dataRaw);
         const dataWithColors = data.datasets[dataset].map(obj => ({
             ...obj,
-            borderColor         : theme.palette.divider,
-            backgroundColor     : [
+            borderColor: theme.palette.divider,
+            backgroundColor: [
                 theme.palette.primary.dark,
                 theme.palette.primary.main,
                 theme.palette.primary.light
@@ -36,16 +35,16 @@ class Widget7 extends Component {
             <Card className="w-full rounded-8 shadow-none border-1">
 
                 <div className="p-16">
-                    <Typography className="h1 font-300">Sessions by device</Typography>
+                    <Typography className="h1 font-300">Sessões por dispositivo</Typography>
                 </div>
 
                 <div className="h-224 relative">
                     <Doughnut
                         data={{
-                            labels  : data.labels,
+                            labels: data.labels,
                             datasets: dataWithColors
                         }}
-                        options={data.options}/>
+                        options={data.options} />
                 </div>
 
                 <div className="p-16 flex flex-row items-center justify-center">
@@ -77,7 +76,7 @@ class Widget7 extends Component {
                     ))}
                 </div>
 
-                <Divider className="mx-16"/>
+                <Divider className="mx-16" />
 
                 <div className="p-16 flex flex-row items-center justify-between">
                     <div>
@@ -96,4 +95,4 @@ class Widget7 extends Component {
     }
 }
 
-export default withStyles(null, {withTheme: true})(Widget7);
+export default withStyles(null, { withTheme: true })(Widget7);

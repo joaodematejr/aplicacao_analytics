@@ -1,12 +1,12 @@
 import React from 'react';
-import {withStyles, Card, Icon, Typography} from '@material-ui/core';
-import {Bar} from 'react-chartjs-2';
+import { withStyles, Card, Icon, Typography } from '@material-ui/core';
+import { Bar } from 'react-chartjs-2';
 
-const Widget4 = ({data, theme}) => {
+const Widget4 = ({ data, theme }) => {
 
     const dataWithColors = data.datasets.map(obj => ({
         ...obj,
-        borderColor    : theme.palette.error.main,
+        borderColor: theme.palette.error.main,
         backgroundColor: theme.palette.error.main
     }));
 
@@ -16,7 +16,7 @@ const Widget4 = ({data, theme}) => {
             <div className="p-16 pb-0 flex flex-row items-end flex-wrap">
 
                 <div className="pr-16">
-                    <Typography className="h3" color="textSecondary">Visits</Typography>
+                    <Typography className="h3" color="textSecondary">Visitas</Typography>
                     <Typography className="text-56 font-300 leading-none mt-8">
                         {data.visits.value}
                     </Typography>
@@ -32,7 +32,7 @@ const Widget4 = ({data, theme}) => {
                         )}
                         <Typography>{data.visits.ofTarget}%</Typography>
                     </div>
-                    <Typography className="ml-4 whitespace-no-wrap">of target</Typography>
+                    <Typography className="ml-4 whitespace-no-wrap">do alvo</Typography>
                 </div>
 
             </div>
@@ -40,7 +40,7 @@ const Widget4 = ({data, theme}) => {
             <div className="h-96 w-100-p">
                 <Bar
                     data={{
-                        labels  : data.labels,
+                        labels: data.labels,
                         datasets: dataWithColors
                     }}
                     options={data.options}
@@ -50,4 +50,4 @@ const Widget4 = ({data, theme}) => {
     );
 };
 
-export default withStyles(null, {withTheme: true})(Widget4);
+export default withStyles(null, { withTheme: true })(Widget4);
