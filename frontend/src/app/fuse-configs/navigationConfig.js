@@ -1,7 +1,7 @@
 const navigationConfig = [
     {
         'id': 'applications',
-        'title': 'APLICAÇÕES',
+        'title': 'Analytics',
         'type': 'group',
         'icon': 'apps',
         'children': [
@@ -13,13 +13,13 @@ const navigationConfig = [
                 'children': [
                     {
                         'id': 'analytics-dashboard',
-                        'title': 'Analytics',
+                        'title': 'Análise V1',
                         'type': 'item',
                         'url': '/apps/dashboards/analytics'
                     },
                     {
                         'id': 'project-dashboard',
-                        'title': 'Project',
+                        'title': 'Análise V2',
                         'type': 'item',
                         'url': '/apps/dashboards/project'
                     }
