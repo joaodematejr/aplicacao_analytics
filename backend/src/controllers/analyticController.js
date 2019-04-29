@@ -15,12 +15,6 @@ module.exports = {
         console.log('deleteById');
     },
     create: function (req, res, next) {
-        Analytic.create(req.body, function (err) {
-            if (err)
-                res.status(500).json({ status: "Error", message: "Erro !!!", data: null });
-            else {
-                res.json({ status: "Success", message: "Sucesso !!!", data: '' });
-            }
-        });
+        console.log('create');
     },
 }
