@@ -1,5 +1,6 @@
 const Analytic = require('../models/analytic');
-const io = require('socket.io');
+const io = require('socket.io')
+
 
 module.exports = {
     getById: function (req, res, next) {
@@ -17,4 +18,4 @@ module.exports = {
     create: function (req, res, next) {
         console.log('create');
     },
-}
+} 

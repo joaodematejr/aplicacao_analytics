@@ -38,7 +38,13 @@ class App extends Component {
         socket.on('analytics', function (data) {
             console.log('recebi o evento !!!', data)
         })
+    }
 
+    componentDidUpdate() {
+        const socket = socketIOClient(this.state.endpoint);
+        socket.on('analytics', function (data) {
+            console.log('recebi o evento !!!', data)
+        })
     }
 
 

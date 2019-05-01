@@ -72,7 +72,7 @@ class AnalyticsDashboardApp extends Component {
 
                             <FuseAnimate delay={600}>
                                 <Typography className="px-16 pb-8 text-18 font-300">
-                                    Where are your users?
+                                    Onde estão seus usuários?
                                 </Typography>
                             </FuseAnimate>
 
