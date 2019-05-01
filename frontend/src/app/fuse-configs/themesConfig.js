@@ -3,21 +3,21 @@ import lightBlue from '@material-ui/core/colors/lightBlue';
 import red from '@material-ui/core/colors/red';
 
 const themesConfig = {
-    default: {
-        palette: {
-            type: 'dark',
-            primary: fuseDark,
-            secondary: {
-                light: lightBlue[400],
-                main: lightBlue[600],
-                dark: lightBlue[700]
+    /*     default: {
+            palette: {
+                type: 'light',
+                primary: fuseDark,
+                secondary: {
+                    light: lightBlue[400],
+                    main: lightBlue[600],
+                    dark: lightBlue[700]
+                },
+                error: red
             },
-            error: red
-        },
-        status: {
-            danger: 'orange'
-        }
-    },
+            status: {
+                danger: 'orange'
+            }
+        }, */
     sunset: {
         palette: {
             type: 'light',
@@ -107,7 +107,7 @@ const themesConfig = {
             }
         }
     },
-    defaultDark: {
+    default: {
         palette: {
             type: 'dark',
             primary: fuseDark,

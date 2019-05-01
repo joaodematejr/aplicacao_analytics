@@ -2,6 +2,7 @@ const port = 9000
 const bodyParser = require('body-parser');
 const express = require('express');
 const cors = require('cors');
+const consign = require('consign');
 const app = express();
 require('./src/config/mongodb')
 app.use(bodyParser.urlencoded({ limit: '1mb', extended: true }));
@@ -15,12 +16,10 @@ io.on('connection', socket => {
     socket.on('disconnect', () => {
         console.log('Usuário desconectado :(')
     })
-    socket.emit('analytics', {
-        date: new Date()
-    });
 })
 //ROTAS DA APLICAÇÃO
-require('./src/config/routes')(app, io);
+consign().include('./src/routes').into(app, io);
+
 http.listen(port, function () {
     console.log(`servidor rodando na porta ${port}.`)
 })

@@ -65,7 +65,7 @@ const projectDashboardAppDB = {
             'detail': 'You can show some detailed information about this widget in here.'
         },
         'widget5': {
-            'title': 'Github Issues',
+            'title': 'Lorem ipsum',
             'ranges': {
                 'TW': 'This Week',
                 'LW': 'Last Week',
@@ -626,7 +626,7 @@ const projectDashboardAppDB = {
             }
         },
         'widget6': {
-            'title': 'Task Distribution',
+            'title': 'Lorem ipsum 3',
             'ranges': {
                 'TW': 'This Week',
                 'LW': 'Last Week',
@@ -710,7 +710,7 @@ const projectDashboardAppDB = {
             'footerLeft': {
                 'title': 'Tasks Added',
                 'count': {
-                    '2W': 487,
+                    '2W': 1,
                     'LW': 526,
                     'TW': 594
                 }
@@ -1980,19 +1980,19 @@ const projectDashboardAppDB = {
     projects: [
         {
             'id': 1,
-            'name': 'ACME Corp. Backend App'
+            'name': 'Dashboards 1 App'
         },
         {
             'id': 2,
-            'name': 'ACME Corp. Frontend App'
+            'name': 'Dashboards 2 App'
         },
         {
             'id': 3,
-            'name': 'Creapond'
+            'name': 'Dashboards 3 App'
         },
         {
             'id': 4,
-            'name': 'Withinpixels'
+            'name': 'Dashboards 4 App'
         }
     ]
 };

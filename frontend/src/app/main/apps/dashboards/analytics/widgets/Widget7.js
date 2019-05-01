@@ -35,7 +35,7 @@ class Widget7 extends Component {
             <Card className="w-full rounded-8 shadow-none border-1">
 
                 <div className="p-16">
-                    <Typography className="h1 font-300">Sessões por dispositivo</Typography>
+                    <Typography className="h1 font-300">Lorem ipsum aliquet</Typography>
                 </div>
 
                 <div className="h-224 relative">

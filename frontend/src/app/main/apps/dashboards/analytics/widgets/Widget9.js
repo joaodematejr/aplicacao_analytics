@@ -1,13 +1,13 @@
 import React from 'react';
-import {withStyles, Button, Card, Divider, Icon, IconButton, Typography} from '@material-ui/core';
+import { withStyles, Button, Card, Divider, Icon, IconButton, Typography } from '@material-ui/core';
 
-const Widget9 = ({data}) => {
+const Widget9 = ({ data }) => {
     return (
         <Card className="w-full rounded-8 shadow-none border-1">
 
             <div className="p-16 pr-4 flex flex-row items-center justify-between">
 
-                <Typography className="h1 pr-16">Principais campanhas</Typography>
+                <Typography className="h1 pr-16">Lorem ipsum 4</Typography>
 
                 <div>
                     <IconButton aria-label="more">
@@ -35,7 +35,7 @@ const Widget9 = ({data}) => {
                 </tbody>
             </table>
 
-            <Divider className="card-divider w-full"/>
+            <Divider className="card-divider w-full" />
 
             <div className="p-8 pt-16 flex flex-row items-center">
                 <Button>GO TO CAMPAIGNS</Button>
@@ -44,4 +44,4 @@ const Widget9 = ({data}) => {
     );
 };
 
-export default withStyles(null, {withTheme: true})(Widget9);
+export default withStyles(null, { withTheme: true })(Widget9);

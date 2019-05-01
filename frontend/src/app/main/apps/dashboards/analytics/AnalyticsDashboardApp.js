@@ -41,7 +41,7 @@ class AnalyticsDashboardApp extends Component {
 
                             <FuseAnimate delay={600}>
                                 <Typography className="p-16 pb-8 text-18 font-300">
-                                    Como seus usuários ativos estão tendendo ao longo do tempo ?
+                                    Lorem ipsum aliquet eleifend cursus urna, habitant hac ullamcorper semper.
                                 </Typography>
                             </FuseAnimate>
 
@@ -72,7 +72,7 @@ class AnalyticsDashboardApp extends Component {
 
                             <FuseAnimate delay={600}>
                                 <Typography className="px-16 pb-8 text-18 font-300">
-                                    Onde estão seus usuários?
+                                    Lorem ipsum aliquet eleifend 2
                                 </Typography>
                             </FuseAnimate>
 
@@ -86,7 +86,7 @@ class AnalyticsDashboardApp extends Component {
                             <div className="mb-32 w-full sm:w-1/2 md:w-full">
                                 <FuseAnimate delay={600}>
                                     <Typography className="px-16 pb-8 text-18 font-300">
-                                        Quais os principais dispositivos?
+                                        Lorem ipsum aliquet
                                     </Typography>
                                 </FuseAnimate>
 
@@ -99,7 +99,7 @@ class AnalyticsDashboardApp extends Component {
 
                                 <FuseAnimate delay={600}>
                                     <div className="px-16 pb-8 text-18 font-300">
-                                        Como estão as suas vendas?
+                                        Lorem ipsum aliquet eleifend 3
                                     </div>
                                 </FuseAnimate>
 
@@ -111,7 +111,7 @@ class AnalyticsDashboardApp extends Component {
                             <div className="mb-32 w-full sm:w-1/2 md:w-full">
                                 <FuseAnimate delay={600}>
                                     <Typography className="px-16 pb-8 text-18 font-300 lg:pt-0">
-                                        Quais são suas principais campanhas?
+                                        Lorem ipsum aliquet eleifend 3
                                     </Typography>
                                 </FuseAnimate>
                                 <div className="widget w-full p-16">

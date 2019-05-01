@@ -1,6 +1,6 @@
-import React, {Component} from 'react';
-import {withStyles, AppBar, Card, Icon, IconButton, Tab, Tabs, Typography} from '@material-ui/core';
-import {Line} from 'react-chartjs-2';
+import React, { Component } from 'react';
+import { withStyles, AppBar, Card, Icon, IconButton, Tab, Tabs, Typography } from '@material-ui/core';
+import { Line } from 'react-chartjs-2';
 
 class Widget8 extends Component {
 
@@ -9,17 +9,16 @@ class Widget8 extends Component {
     };
 
     handleChange = (event, tabIndex) => {
-        this.setState({tabIndex});
+        this.setState({ tabIndex });
     };
 
     handleChangeIndex = index => {
-        this.setState({tabIndex: index});
+        this.setState({ tabIndex: index });
     };
 
-    render()
-    {
-        const {data, theme} = this.props;
-        const {tabIndex} = this.state;
+    render() {
+        const { data, theme } = this.props;
+        const { tabIndex } = this.state;
         const dataWithColors = data.datasets[tabIndex].map(obj => ({
             ...obj,
             borderColor: theme.palette.secondary.main
@@ -32,8 +31,8 @@ class Widget8 extends Component {
                     <div className="p-16 pr-4 flex flex-row items-center justify-between">
 
                         <div className="pr-16">
-                            <Typography className="h1 font-300" color="inherit">Sales</Typography>
-                            <Typography className="h5" color="inherit">Lifetime sum of your sales</Typography>
+                            <Typography className="h1 font-300" color="inherit">Lorem ipsum</Typography>
+                            <Typography className="h5" color="inherit">Lorem ipsum aliquet eleifend cursus</Typography>
                         </div>
 
                         <div>
@@ -62,14 +61,14 @@ class Widget8 extends Component {
                         onChange={this.handleChange}
                         variant="fullWidth"
                     >
-                        <Tab label="1Day" className="min-w-0"/>
-                        <Tab label="1Week" className="min-w-0"/>
-                        <Tab label="1Month" className="min-w-0"/>
+                        <Tab label="1Day" className="min-w-0" />
+                        <Tab label="1Week" className="min-w-0" />
+                        <Tab label="1Month" className="min-w-0" />
                     </Tabs>
                 </AppBar>
                 <Line
                     data={{
-                        labels  : data.labels,
+                        labels: data.labels,
                         datasets: dataWithColors
                     }}
                     options={data.options}
@@ -79,4 +78,4 @@ class Widget8 extends Component {
     }
 }
 
-export default withStyles(null, {withTheme: true})(Widget8);
+export default withStyles(null, { withTheme: true })(Widget8);
