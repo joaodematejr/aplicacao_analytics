@@ -1,5 +1,5 @@
-import React, {Component} from 'react';
-import {Icon, Typography, Select, Paper, IconButton} from '@material-ui/core';
+import React, { Component } from 'react';
+import { Icon, Typography, Select, Paper, IconButton } from '@material-ui/core';
 
 class Widget1 extends Component {
     state = {
@@ -7,13 +7,12 @@ class Widget1 extends Component {
     };
 
     handleChangeSelect = (ev) => {
-        this.setState({[ev.target.name]: ev.target.value});
+        this.setState({ [ev.target.name]: ev.target.value });
     };
 
-    render()
-    {
-        const {widget} = this.props;
-        const {currentRange} = this.state;
+    render() {
+        const { widget } = this.props;
+        const { currentRange } = this.state;
 
         return (
             <Paper className="w-full rounded-8 shadow-none border-1">

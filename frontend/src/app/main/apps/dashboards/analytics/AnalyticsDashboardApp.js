@@ -16,11 +16,17 @@ import Widget9 from './widgets/Widget9';
 import withReducer from 'app/store/withReducer';
 import * as Actions from './store/actions'
 import reducer from './store/reducers';
+import socketIOClient from 'socket.io-client';
+import { END_POINT } from '../../../../../endPoint';
 
 class AnalyticsDashboardApp extends Component {
 
-    componentDidMount() {
+    componentDidMount = () => {
         this.props.getWidgets();
+        const socket = socketIOClient(END_POINT);
+        socket.on('analytics', function (data) {
+            console.log('recebi o evento !!! Widget', data)
+        })
     }
 
     render() {

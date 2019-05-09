@@ -10,7 +10,7 @@ import reducer from './store/reducers';
 import _ from 'lodash';
 import classNames from 'classnames';
 import Widget1 from './widgets/Widget1';
-import Widget2 from './widgets/Widget2';
+/* import Widget2 from './widgets/Widget2';
 import Widget3 from './widgets/Widget3';
 import Widget4 from './widgets/Widget4';
 import Widget5 from './widgets/Widget5';
@@ -19,7 +19,7 @@ import Widget7 from './widgets/Widget7';
 import Widget8 from './widgets/Widget8';
 import Widget9 from './widgets/Widget9';
 import Widget10 from './widgets/Widget10';
-import Widget11 from './widgets/Widget11';
+import Widget11 from './widgets/Widget11'; */
 import WidgetNow from './widgets/WidgetNow';
 import WidgetWeather from './widgets/WidgetWeather';
 
@@ -161,22 +161,22 @@ class ProjectDashboardApp extends Component {
                                         <Widget1 widget={widgets.widget1} />
                                     </div>
                                     <div className="widget flex w-full sm:w-1/2 md:w-1/4 p-12">
-                                        <Widget2 widget={widgets.widget2} />
+                                        {/*  <Widget2 widget={widgets.widget2} /> */}
                                     </div>
                                     <div className="widget flex w-full sm:w-1/2 md:w-1/4 p-12">
-                                        <Widget3 widget={widgets.widget3} />
+                                        {/*  <Widget3 widget={widgets.widget3} /> */}
                                     </div>
                                     <div className="widget flex w-full sm:w-1/2 md:w-1/4 p-12">
-                                        <Widget4 widget={widgets.widget4} />
+                                        {/*  <Widget4 widget={widgets.widget4} /> */}
                                     </div>
                                     <div className="widget flex w-full p-12">
-                                        <Widget5 widget={widgets.widget5} />
+                                        {/*   <Widget5 widget={widgets.widget5} /> */}
                                     </div>
                                     <div className="widget flex w-full sm:w-1/2 p-12">
-                                        <Widget6 widget={widgets.widget6} />
+                                        {/*  <Widget6 widget={widgets.widget6} /> */}
                                     </div>
                                     <div className="widget flex w-full sm:w-1/2 p-12">
-                                        <Widget7 widget={widgets.widget7} />
+                                        {/*  <Widget7 widget={widgets.widget7} /> */}
                                     </div>
                                 </FuseAnimateGroup>
                             )}
@@ -188,13 +188,13 @@ class ProjectDashboardApp extends Component {
                                 }}
                             >
                                 <div className="widget flex w-full sm:w-1/2 p-12">
-                                    <Widget8 widget={widgets.widget8} />
+                                    {/*  <Widget8 widget={widgets.widget8} /> */}
                                 </div>
                                 <div className="widget flex w-full sm:w-1/2 p-12">
-                                    <Widget9 widget={widgets.widget9} />
+                                    {/* <Widget9 widget={widgets.widget9} /> */}
                                 </div>
                                 <div className="widget flex w-full p-12">
-                                    <Widget10 widget={widgets.widget10} />
+                                    {/*  <Widget10 widget={widgets.widget10} /> */}
                                 </div>
                             </FuseAnimateGroup>
                         )}
@@ -206,7 +206,7 @@ class ProjectDashboardApp extends Component {
                                 }}
                             >
                                 <div className="widget flex w-full p-12">
-                                    <Widget11 widget={widgets.widget11} />
+                                    {/*  <Widget11 widget={widgets.widget11} /> */}
                                 </div>
                             </FuseAnimateGroup>
                         )}

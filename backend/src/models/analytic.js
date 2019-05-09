@@ -1,7 +1,6 @@
 var mongoose = require('mongoose');
 
-const analyticSchema = mongoose.Schema({
-    informacao: { type: String, required: false },
+const wfp_market_food_pricesSchema = mongoose.Schema({
 })
 
-module.exports = mongoose.model('Analytic', analyticSchema)
+module.exports = mongoose.model('Wfp_market_food_prices', wfp_market_food_pricesSchema)

@@ -5,20 +5,6 @@ const analyticsDashboardAppDB = {
         widget1: {
             chartType: 'line',
             datasets: {
-                '2015': [
-                    {
-                        label: 'Sales',
-                        data: [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
-                        fill: 'start'
-                    }
-                ],
-                '2016': [
-                    {
-                        label: 'Sales',
-                        data: [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
-                        fill: 'start'
-                    }
-                ],
                 '2017': [
                     {
                         label: 'Sales',
@@ -95,7 +81,7 @@ const analyticsDashboardAppDB = {
         },
         widget2: {
             conversion: {
-                value: 1,
+                value: 0,
                 ofTarget: 1
             },
             chartType: 'bar',

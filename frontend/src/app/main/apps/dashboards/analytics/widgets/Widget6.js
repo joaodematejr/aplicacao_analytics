@@ -1,7 +1,6 @@
 import { withStyles } from "@material-ui/core/styles";
 import React from "react";
 import Chart from "../../../../../../components/Chart";
-import lightBlue from '@material-ui/core/colors/lightBlue';
 
 const styles = theme => ({
     "chart-container": {
@@ -18,9 +17,9 @@ class Widget6 extends React.Component {
                     type: "line",
                     label: "KB por segundos",
                     backgroundColor: '#3C4252',
-                    borderColor: lightBlue[700],
-                    pointBackgroundColor: '#0091e1',
-                    pointBorderColor: lightBlue[700],
+                    borderColor: this.props.theme.palette.primary.main,
+                    pointBackgroundColor: this.props.theme.palette.secondary.main,
+                    pointBorderColor: this.props.theme.palette.secondary.main,
                     borderWidth: "2",
                     lineTension: 0.45,
                     data: []
