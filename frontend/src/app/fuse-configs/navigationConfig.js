@@ -26,6 +26,38 @@ const navigationConfig = [
                 ]
             },
         ]
+    },
+    {
+        'type': 'divider',
+        'id': 'divider-2'
+    },
+    {
+        'id': 'configuracoes',
+        'title': 'configurações',
+        'type': 'group',
+        'icon': 'apps',
+        'children': [
+            {
+                'id': 'configuracoes',
+                'title': 'Configurações',
+                'type': 'collapse',
+                'icon': 'settings',
+                'children': [
+                    {
+                        'id': 'configuracoes-robo',
+                        'title': 'Configurações Robo',
+                        'type': 'item',
+                        'url': '#'
+                    },
+                    {
+                        'id': 'import-csv',
+                        'title': 'Importar CSV',
+                        'type': 'item',
+                        'url': '#'
+                    },
+                ]
+            }
+        ]
     }
 ];
 

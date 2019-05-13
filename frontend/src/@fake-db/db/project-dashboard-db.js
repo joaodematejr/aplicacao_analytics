@@ -4,13 +4,13 @@ const projectDashboardAppDB = {
     widgets: {
         'widget1': {
             'ranges': {
-                'DY': 'Yesterday',
+                'DY': 'Ontem',
                 'DT': 'Hoje',
-                'DTM': 'Tomorrow'
+                'DTM': 'Amanhã'
             },
             'currentRange': 'DT',
             'data': {
-                'label': 'DUE TASKS',
+                'label': 'TAREFAS DEVIDO',
                 'count': {
                     'DY': 21,
                     'DT': 25,

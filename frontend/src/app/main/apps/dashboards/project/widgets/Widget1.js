@@ -1,18 +1,33 @@
+import { Icon, IconButton, Paper, Select, Typography, withStyles } from '@material-ui/core';
 import React, { Component } from 'react';
-import { Icon, Typography, Select, Paper, IconButton } from '@material-ui/core';
+import { connect } from 'react-redux';
+import { withRouter } from 'react-router-dom';
+import { bindActionCreators } from 'redux';
+import * as Actions from '../store/actions';
+
+const styles = theme => ({
+
+
+})
 
 class Widget1 extends Component {
     state = {
-        currentRange: this.props.widget.currentRange
+        /*  currentRange: this.props.widget.currentRange */
     };
 
     handleChangeSelect = (ev) => {
         this.setState({ [ev.target.name]: ev.target.value });
     };
 
+    componentDidMount() {
+        this.props.getWidgets1();
+    }
+
     render() {
         const { widget } = this.props;
         const { currentRange } = this.state;
+
+        console.log('widget', widget)
 
         return (
             <Paper className="w-full rounded-8 shadow-none border-1">
@@ -24,8 +39,7 @@ class Widget1 extends Component {
                         inputProps={{
                             name: 'currentRange'
                         }}
-                        disableUnderline={true}
-                    >
+                        disableUnderline={true} >
                         {Object.entries(widget.ranges).map(([key, n]) => {
                             return (
                                 <option key={key} value={key}>{n}</option>
@@ -53,4 +67,19 @@ class Widget1 extends Component {
     }
 }
 
-export default Widget1;
+
+
+function mapDispatchToProps(dispatch) {
+    return bindActionCreators({
+        getWidgets1: Actions.getWidgets1,
+    }, dispatch);
+}
+
+function mapStateToProps({ projectDashboardApp }) {
+    return {
+        widgets1: projectDashboardApp.widgets1,
+    }
+}
+
+
+export default withStyles(styles, { withTheme: false })(withRouter(connect(mapStateToProps, mapDispatchToProps)(Widget1)));
