@@ -3,3 +3,9 @@ rs.initiate()
 db.names.find().pretty()
 use base
 db.wfp_market_food_prices.distinct('adm0_name')
+
+
+
+
+#mongo db
+mongod  --replSet rs0

@@ -15,7 +15,8 @@ module.exports = (app, io) => {
     });
     //METODO GET RECUPERAR DADOS
     route.get((req, res) => {
-        Analytic.find({ mp_year: 2014 }).sort({}).count((err, widgets) => {
+        //db.user.distinct("name")
+        Analytic.distinct('adm0_name').exec((err, widgets) => {
             if (err) {
                 app.utils.error.send(err, req, res);
             } else {
@@ -26,6 +27,19 @@ module.exports = (app, io) => {
             }
         });
     });
+    /*     //METODO GET RECUPERAR DADOS
+        route.get((req, res) => {
+            Analytic.find({ mp_year: 2014 }).sort({}).count((err, widgets) => {
+                if (err) {
+                    app.utils.error.send(err, req, res);
+                } else {
+                    res.statusCode = 200;
+                    res.setHeader('Context-Type', 'application/json');
+                    res.json(widgets);
+                    console.log('widgets', widgets)
+                }
+            });
+        }); */
 
     /*      //METODO GET RECUPERAR DADOS
          route.get((req, res) => {

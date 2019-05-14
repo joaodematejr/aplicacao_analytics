@@ -1317,7 +1317,7 @@ const projectDashboardAppDB = {
             }
         },
         'widget11': {
-            'title': 'Lista',
+            'title': 'Lista 2',
             'table': {
                 'columns': [
                     {
