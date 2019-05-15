@@ -1,48 +1,48 @@
-import { Paper, Table, TableBody, TableCell, TableHead, TableRow, Typography, withStyles } from '@material-ui/core';
+import { Paper, Table, TableBody, TableCell, TableRow, Typography, withStyles } from '@material-ui/core';
+import withReducer from 'app/store/withReducer';
+import axios from 'axios';
+import _ from 'lodash';
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import _ from '@lodash';
 import { withRouter } from 'react-router-dom';
-import { bindActionCreators } from 'redux';
-import * as Actions from '../store/actions';
+import reducer from '../store/reducers';
 
 const styles = theme => ({
 
 })
 
 class Widget11 extends Component {
+    constructor(props) {
+        super(props);
+        this.state = { responseJson: [] }
+    }
 
     componentDidMount() {
-        this.props.getWidgets11();
+        axios.get('http://localhost:9000/analytics')
+            .then(response => this.setState({ responseJson: response.data }))
+            .catch(error => console.log('error', error));
+
     }
 
     render() {
-        const { widgets11 } = this.props;
-
-        let listaPaises = _.map(widgets11, paises => ({
+        const { responseJson } = this.state;
+        let listaPaises = _.map(responseJson, paises => ({
             id: Math.random(),
             name: paises,
         }));
-
-        console.log('widgets11', listaPaises)
 
         return (
             <Paper className="w-full rounded-8 shadow-none border-1">
                 <div className="flex items-center justify-between px-16 h-64 border-b-1">
                     <Typography className="text-16">Todos os Países</Typography>
-                    <Typography className="text-11 font-500 rounded-4 text-white bg-blue px-8 py-4">{'0' + " Países"}</Typography>
+                    <Typography className="text-11 font-500 rounded-4 text-white bg-blue px-8 py-4">{listaPaises.length + ' Países'}</Typography>
                 </div>
                 <div className="table-responsive">
                     <Table className="w-full min-w-full" padding="dense">
-                        <TableHead>
-                            <TableRow>
-                                <TableCell align="left">Países</TableCell>
-                            </TableRow>
-                        </TableHead>
                         <TableBody>
                             {listaPaises.map(row => (
                                 <TableRow key={row.id}>
-                                    <TableCell align="left">{row.id}</TableCell>
+                                    <TableCell align="left">{row.name}</TableCell>
                                 </TableRow>
                             ))}
                         </TableBody>
@@ -53,16 +53,4 @@ class Widget11 extends Component {
     }
 }
 
-function mapDispatchToProps(dispatch) {
-    return bindActionCreators({
-        getWidgets11: Actions.getWidgets11,
-    }, dispatch);
-}
-
-function mapStateToProps({ projectDashboardApp }) {
-    return {
-        widgets11: projectDashboardApp.widgets11,
-    }
-}
-
-export default withStyles(styles, { withTheme: false })(withRouter(connect(mapStateToProps, mapDispatchToProps)(Widget11)));
+export default withReducer('projectDashboardApp', reducer)(withStyles(styles, { withTheme: true })(withRouter(connect()(Widget11))));

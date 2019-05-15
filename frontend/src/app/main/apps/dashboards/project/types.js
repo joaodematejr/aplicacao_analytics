@@ -1,0 +1,1 @@
+export const SENHA = 'email';

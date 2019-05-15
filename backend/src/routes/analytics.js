@@ -23,7 +23,6 @@ module.exports = (app, io) => {
                 res.statusCode = 200;
                 res.setHeader('Context-Type', 'application/json');
                 res.json(widgets);
-                console.log('widgets', widgets)
             }
         });
     });

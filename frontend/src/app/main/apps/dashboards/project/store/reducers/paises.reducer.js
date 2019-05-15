@@ -2,9 +2,9 @@ import * as Actions from '../actions';
 
 const initialState = null;
 
-const widgetsReducer = function (state = initialState, action) {
+const paisesReducer = function (state = initialState, action) {
     switch (action.type) {
-        case Actions.GET_WIDGETS:
+        case Actions.GET_PAISES:
             return {
                 ...action.payload
             };
@@ -13,4 +13,4 @@ const widgetsReducer = function (state = initialState, action) {
     }
 };
 
-export default widgetsReducer;
+export default paisesReducer;

@@ -21,7 +21,6 @@ import Widget7 from './widgets/Widget7';
 import Widget8 from './widgets/Widget8';
 import Widget9 from './widgets/Widget9';
 import WidgetNow from './widgets/WidgetNow';
-import WidgetWeather from './widgets/WidgetWeather';
 
 const styles = theme => ({
     content: {
@@ -144,7 +143,7 @@ class ProjectDashboardApp extends Component {
                     >
                         <Tab className="text-14 font-600 normal-case" label="Home" />
                         <Tab className="text-14 font-600 normal-case" label="Budget Summary" />
-                        <Tab className="text-14 font-600 normal-case" label="Lista de Paises" />
+                        <Tab className="text-14 font-600 normal-case" label="Lista de Países" />
                     </Tabs>
                 }
                 content={
@@ -221,9 +220,6 @@ class ProjectDashboardApp extends Component {
                     >
                         <div className="widget w-full p-12">
                             <WidgetNow />
-                        </div>
-                        <div className="widget w-full p-12">
-                            <WidgetWeather widget={widgets.weatherWidget} />
                         </div>
                     </FuseAnimateGroup>
                 }
