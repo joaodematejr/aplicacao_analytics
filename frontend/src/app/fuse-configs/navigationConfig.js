@@ -47,13 +47,13 @@ const navigationConfig = [
                         'id': 'configuracoes-robo',
                         'title': 'Configurações Robo',
                         'type': 'item',
-                        'url': '#'
+                        'url': '/apps/e-commerce/products/new'
                     },
                     {
                         'id': 'import-csv',
                         'title': 'Importar CSV',
                         'type': 'item',
-                        'url': '#'
+                        'url': '/apps/importcsv/products/new'
                     },
                 ]
             }
