@@ -1,21 +1,19 @@
 import { FuseAnimate, FusePageCarded } from '@fuse';
 import _ from '@lodash';
 import { Button, Icon, Tab, Tabs, Typography, withStyles } from '@material-ui/core';
+import Card from '@material-ui/core/Card';
+import CardActionArea from '@material-ui/core/CardActionArea';
+import CardContent from '@material-ui/core/CardContent';
 import { orange } from '@material-ui/core/colors';
 import withReducer from 'app/store/withReducer';
 import classNames from 'classnames';
 import React, { Component } from 'react';
+import Dropzone from 'react-dropzone';
 import connect from 'react-redux/es/connect/connect';
 import { Link, withRouter } from 'react-router-dom';
 import { bindActionCreators } from 'redux';
 import * as Actions from '../store/actions';
 import reducer from '../store/reducers';
-import Dropzone from 'react-dropzone';
-import Card from '@material-ui/core/Card';
-import CardActionArea from '@material-ui/core/CardActionArea';
-import CardActions from '@material-ui/core/CardActions';
-import CardContent from '@material-ui/core/CardContent';
-import CardMedia from '@material-ui/core/CardMedia';
 
 const styles = theme => ({
     productImageFeaturedStar: {

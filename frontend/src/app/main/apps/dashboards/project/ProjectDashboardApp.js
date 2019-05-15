@@ -20,7 +20,6 @@ import Widget6 from './widgets/Widget6';
 import Widget7 from './widgets/Widget7';
 import Widget8 from './widgets/Widget8';
 import Widget9 from './widgets/Widget9';
-import WidgetNow from './widgets/WidgetNow';
 
 const styles = theme => ({
     content: {
@@ -210,18 +209,6 @@ class ProjectDashboardApp extends Component {
                             </FuseAnimateGroup>
                         )}
                     </div>
-                }
-                rightSidebarContent={
-                    <FuseAnimateGroup
-                        className="w-full"
-                        enter={{
-                            animation: "transition.slideUpBigIn"
-                        }}
-                    >
-                        <div className="widget w-full p-12">
-                            <WidgetNow />
-                        </div>
-                    </FuseAnimateGroup>
                 }
                 onRef={instance => {
                     this.pageLayout = instance;

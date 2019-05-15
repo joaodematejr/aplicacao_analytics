@@ -9,3 +9,11 @@ db.wfp_market_food_prices.distinct('adm0_name')
 
 #mongo db
 mongod  --replSet rs0
+
+
+
+
+
+dependência nodejs para instalar 
+
+http://www.data-forge-js.com/
