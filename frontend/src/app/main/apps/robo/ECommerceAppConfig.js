@@ -8,20 +8,20 @@ export const ECommerceAppConfig = {
     },
     routes: [
         {
-            path: '/apps/e-commerce/products/:productId/:productHandle?',
+            path: '/apps/robo/products/:productId/:productHandle?',
             component: FuseLoadable({
                 loader: () => import('./product/Product')
             })
         },
         {
-            path: '/apps/e-commerce/products',
+            path: '/apps/robo/products',
             component: FuseLoadable({
                 loader: () => import('./products/Products')
             })
         },
         {
-            path: '/apps/e-commerce',
-            component: () => <Redirect to="/apps/e-commerce/products" />
+            path: '/apps/robo',
+            component: () => <Redirect to="/apps/robo/products" />
         }
     ]
 };
