@@ -1,80 +1,57 @@
-const { Builder, By, Key, until } = require('selenium-webdriver');
+const { Builder, By, Key, until, Assert, selenium } = require('selenium-webdriver');
 
 module.exports = (app, io) => {
     var route = app.route('/robo');
     var driver;
     //RECEBER DADOS DO ROBO
     route.post((req, res) => {
-
-        const frontUrl = 'https://www.kaggle.com/jboysen/global-food-prices';
-        const frontNavegador = 'chrome';
-
-        driver = new Builder().forBrowser(frontNavegador).build();
-
-        chamadaNavegador();
-
-        async function chamadaNavegador() {
-            try {
-                await driver.get(frontUrl);
-                const urlSite = await driver.getCurrentUrl();
-                if (urlSite === frontUrl) {
-                    localizarBotaoLogin();
-                } else {
-                    res.status(500).json({ status: "Error na URL", message: 'URL incorreta por favor tente novamente', data: null });
-                }
-            } catch (error) {
-                res.status(500).json({ status: "Error no sistema", message: 'Erro no sistema por favor entre em contato com desenvolver do sistema', error, data: null });
-            }
+        //VALIDAÇÕES DO FRONT-END
+        if (req.body.frontNavegador === '') {
+            res.status(500).json({ status: "Error no sistema", message: 'Navegador Vazio !!!', error, error, data: null });
+        } else if (req.body.frontUrl === '') {
+            res.status(500).json({ status: "Error no sistema", message: 'Url do site Vazia !!!', error, error, data: null });
+        } else if (req.body.login === '') {
+            res.status(500).json({ status: "Error no sistema", message: 'Login Vazio !!!', error, error, data: null });
+        } else if (req.body.senha === '') {
+            res.status(500).json({ status: "Error no sistema", message: 'Senha Vazia !!!', error, error, data: null });
+        } else {
+            //INICIAR NAVEGADOR
+            driver = new Builder().forBrowser(req.body.frontNavegador).build();
+            driver.get(req.body.frontUrl).
+                then(function () {
+                    //LOCALIZAR BOTAO DE LOGIN E CLICAR
+                    return driver.findElement(By.id("sign-in-button")).click();
+                }).
+                then(function () {
+                    //LOCALIZAR INPUT DE LOGIN 
+                    return driver.findElement(By.id('username-input-text'));
+                }).
+                then(function (driver) {
+                    //INSERIR OS LOGIN DO FRONT-END
+                    return driver.sendKeys(req.body.login);
+                }).
+                then(function () {
+                    //LOCALIZAR INPUT DE SENHA
+                    return driver.findElement(By.id('password-input-text'));
+                }).
+                then(function (driver) {
+                    //INSERIR SENHA DO FRONT-END
+                    return driver.sendKeys(req.body.senha);
+                }).
+                then(function () {
+                    //LOCALIZAR BOTAO PARA FAZER LOGIN
+                    return driver.findElement(By.id('submit-sign-in-button')).click();
+                }).
+                then(async function () {
+                    //LOCALIZAR MENSAGEM LOGIN INVALIDO E ENVIAR PARA FRONT-END
+                    let erroLogin = await driver.findElement(By.xpath("//span[contains(text(), 'Your account has been temporarily locked out due to unsuccessful login attempts. Please try again later.')]")).getText();
+                    if (erroLogin === 'Your account has been temporarily locked out due to unsuccessful login attempts. Please try again later.') {
+                        res.status(500).json({ status: "Error", message: 'Problemas na autenticação', data: null });
+                    } else {
+                        console.log('passou')
+                    }
+                    return
+                })
         }
-
-        async function localizarBotaoLogin() {
-            try {
-                const element = await driver.findElement(By.id('sign-in-button'));
-                console.log('element', element)
-            } catch (error) {
-                console.error(error);
-            }
-        }
-
-
-
-        /*         async function segundoChamada() {
-                    await driver.get('http://www.google.com');
-                    var element = await driver.findElement(By.css('input[title=Pesquisar]'));
-                    await element.sendKeys("selenium", Key.RETURN);
-                    await driver.wait(until.titleContains("selenium"), 4000);
-                    driver.getTitle().then(title => {
-                        expect(title).toEqual('selenium - Pesquisa Google');
-                    });
-                } */
     });
 }
-
-
-
-
-///
-///
-///niumDrivers.init({ browserName: 'chrome', download: true })
-///n(function () {
-///driver = new Builder().forBrowser('chrome').build();
-///driver.get('https://www.kaggle.com/jboysen/global-food-prices');
-///
-///console.log('driver', driver)
-///
-/////sign-in-button
-///
-////* driver.getTitle().then(title => { expect(title).toEqual('Google'); });
-///var element = driver.findElement(By.css('input[title=Pesquisar]'));
-///element.sendKeys("selenium", Key.RETURN);
-///driver.wait(until.titleContains("selenium"), 4000);
-///driver.getTitle().then(title => { expect(title).toEqual('selenium - Pesquisa Google'); });
-///driver.get('http://www.google.com');
-///element = driver.findElement(By.css('input[title=Pesquisar]'));
-///element.sendKeys("selenium", Key.RETURN);
-///driver.wait(until.titleContains("selenium"), 4000);
-///imageSearch = driver.findElement(By.xpath("//a[contains(text(), 'Imagens')]"));
-///imageSearch.click();
-///image = driver.takeScreenshot();
-///fs.writeFileSync('out.png', image, 'base64'); */
-///
