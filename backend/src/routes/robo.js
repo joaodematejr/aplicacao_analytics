@@ -1,4 +1,6 @@
-const { Builder, By, Key, until, Assert, selenium } = require('selenium-webdriver');
+const { Builder, By } = require('selenium-webdriver');
+const chrome = require('selenium-webdriver/chrome');
+const fs = require('fs')
 
 module.exports = (app, io) => {
     var route = app.route('/robo');
@@ -9,14 +11,22 @@ module.exports = (app, io) => {
         if (req.body.frontNavegador === '') {
             res.status(500).json({ status: "Error no sistema", message: 'Navegador Vazio !!!', error, error, data: null });
         } else if (req.body.frontUrl === '') {
-            res.status(500).json({ status: "Error no sistema", message: 'Url do site Vazia !!!', error, error, data: null });
+            res.status(500).json({ status: "Error no sistema", message: 'Url do site Vazio !!!', error, error, data: null });
         } else if (req.body.login === '') {
-            res.status(500).json({ status: "Error no sistema", message: 'Login Vazio !!!', error, error, data: null });
+            res.status(500).json({ status: "Error no sistema", message: 'Login em branco !!!', error, error, data: null });
         } else if (req.body.senha === '') {
-            res.status(500).json({ status: "Error no sistema", message: 'Senha Vazia !!!', error, error, data: null });
+            res.status(500).json({ status: "Error no sistema", message: 'Senha em branco!!!', error, error, data: null });
         } else {
+
+            var opcoes = new chrome.Options();
+            //options.addArguments("start-maximized");
+            //options.addArguments("--window-size=1920,1080");
+            opcoes.addArguments("--disable-popup-blocking");
+            opcoes.addArguments("--disable-default-apps");
+
             //INICIAR NAVEGADOR
-            driver = new Builder().forBrowser(req.body.frontNavegador).build();
+            driver = new Builder(opcoes).forBrowser(req.body.frontNavegador).setChromeOptions(opcoes).build();
+
             driver.get(req.body.frontUrl).
                 then(function () {
                     //LOCALIZAR BOTAO DE LOGIN E CLICAR
@@ -44,11 +54,12 @@ module.exports = (app, io) => {
                 }).
                 then(async function () {
                     //LOCALIZAR MENSAGEM LOGIN INVALIDO E ENVIAR PARA FRONT-END
-                    let erroLogin = await driver.findElement(By.xpath("//span[contains(text(), 'Your account has been temporarily locked out due to unsuccessful login attempts. Please try again later.')]")).getText();
-                    if (erroLogin === 'Your account has been temporarily locked out due to unsuccessful login attempts. Please try again later.') {
+                    try {
+                        await driver.findElement(By.xpath("//span[contains(text(), 'Your account has been temporarily locked out due to unsuccessful login attempts. Please try again later.')]")).getText();
                         res.status(500).json({ status: "Error", message: 'Problemas na autenticação', data: null });
-                    } else {
-                        console.log('passou')
+                    } catch (error) {
+                        //LOCALIZAR BOTAO PARA BAIXAR E CLICAR
+                        await driver.findElement(By.xpath("//a[@class='button__anchor-wrapper']")).click();
                     }
                     return
                 })
