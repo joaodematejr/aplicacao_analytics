@@ -1,17 +1,23 @@
-import React, { Component } from 'react';
-import { withStyles, Button, Tab, Tabs, TextField, InputAdornment, Icon, Typography, IconButton } from '@material-ui/core';
-import VisibilityOff from '@material-ui/icons/VisibilityOff';
 import { FuseAnimate, FusePageCarded } from '@fuse';
-import { orange } from '@material-ui/core/colors';
-import { Link, withRouter } from 'react-router-dom';
-import { bindActionCreators } from 'redux';
-import connect from 'react-redux/es/connect/connect';
-import classNames from 'classnames';
 import _ from '@lodash';
+import { Button, Icon, IconButton, InputAdornment, Tab, Tabs, TextField, Typography, withStyles } from '@material-ui/core';
+import { orange } from '@material-ui/core/colors';
 import Visibility from '@material-ui/icons/Visibility';
+import VisibilityOff from '@material-ui/icons/VisibilityOff';
 import withReducer from 'app/store/withReducer';
+import React, { Component } from 'react';
+import { makeStyles } from '@material-ui/core/styles';
+import connect from 'react-redux/es/connect/connect';
+import { Link, withRouter } from 'react-router-dom';
+import OutlinedInput from '@material-ui/core/OutlinedInput';
+import FormControl from '@material-ui/core/FormControl';
+import { bindActionCreators } from 'redux';
+import Select from '@material-ui/core/Select';
+import MenuItem from '@material-ui/core/MenuItem';
 import * as Actions from '../store/actions';
 import reducer from '../store/reducers';
+import InputLabel from '@material-ui/core/InputLabel';
+
 
 const styles = theme => ({
     productImageFeaturedStar: {
@@ -44,11 +50,14 @@ const styles = theme => ({
     }
 });
 
+
+
 class Product extends Component {
 
     state = {
         tabValue: 0,
-        form: null
+        form: null,
+        showPassword: 'password'
     };
 
     componentDidMount() {
@@ -92,26 +101,21 @@ class Product extends Component {
         this.setState({ form: _.set({ ...this.state.form }, event.target.name, event.target.type === 'checkbox' ? event.target.checked : event.target.value) });
     };
 
-    handleChipChange = (value, name) => {
-        this.setState({ form: _.set({ ...this.state.form }, name, value.map(item => item.value)) });
-    };
-
-    setFeaturedImage = (id) => {
-        this.setState({ form: _.set({ ...this.state.form }, 'featuredImageId', id) });
-    };
+    enviarDados() {
+        console.log('this.state.form', this.state.form)
+    }
 
     canBeSubmitted() {
-        const { name } = this.state.form;
+        const { url } = this.state.form;
         return (
-            name.length > 0 &&
+            url.length > 0 &&
             !_.isEqual(this.props.product.data, this.state.form)
         );
     }
 
-    render() {
-        const { classes, saveProduct } = this.props;
-        const { tabValue, form } = this.state;
 
+    render() {
+        const { tabValue, form } = this.state;
         return (
             <FusePageCarded
                 classes={{
@@ -149,8 +153,7 @@ class Product extends Component {
                                     className="whitespace-no-wrap"
                                     variant="contained"
                                     disabled={!this.canBeSubmitted()}
-                                    onClick={() => saveProduct(form)}
-                                >
+                                    onClick={() => this.enviarDados()} >
                                     Enviar
                                 </Button>
                             </FuseAnimate>
@@ -166,7 +169,7 @@ class Product extends Component {
                         variant="scrollable"
                         scrollButtons="auto"
                         classes={{ root: "w-full h-64" }}  >
-                        <Tab className="h-64 normal-case" label="Informação básica" />
+                        <Tab className="h-64 normal-case" label="Configurações" />
                     </Tabs>
                 }
                 content={
@@ -176,15 +179,35 @@ class Product extends Component {
                                 (
                                     <div>
 
+                                        <FormControl className="mt-8 mb-16" required id="navegador" labelWidth={''} error={form.url === ''} fullWidth variant="outlined" >
+                                            <InputLabel htmlFor="outlined-age-simple">
+                                                Navegador
+                                            </InputLabel>
+                                            <Select
+                                                value={form.navegador}
+                                                onChange={this.handleChange}
+                                                input={<OutlinedInput name="navegador" id="navegador" />}
+                                            >
+                                                <MenuItem value="">
+                                                    <em>Navegador</em>
+                                                </MenuItem>
+                                                <MenuItem value={'Opera'}>Opera (Em Breve)</MenuItem>
+                                                <MenuItem value={'chrome'}>Google Chrome </MenuItem>
+                                                <MenuItem value={'Firefox'}>Firefox (Em Breve)</MenuItem>
+                                                <MenuItem value={'Safari'}>Safari (Em Breve)</MenuItem>
+                                            </Select>
+                                        </FormControl>
+
+
                                         <TextField
                                             className="mt-8 mb-16"
-                                            error={form.name === ''}
+                                            error={form.url === ''}
                                             required
                                             label="URL"
                                             autoFocus
-                                            id="name"
-                                            name="name"
-                                            value={form.name}
+                                            id="url"
+                                            name="url"
+                                            value={form.url}
                                             onChange={this.handleChange}
                                             variant="outlined"
                                             fullWidth
@@ -193,26 +216,29 @@ class Product extends Component {
                                         <TextField
                                             className="mt-8 mb-16"
                                             required
-                                            id="description"
-                                            name="description"
+                                            error={form.login === ''}
+                                            id="login"
+                                            name="login"
                                             onChange={this.handleChange}
                                             label="Login"
                                             type="text"
-                                            value={form.description}
+                                            value={form.login}
                                             variant="outlined"
                                             fullWidth
                                         />
 
                                         <TextField
-                                            id="filled-adornment-password"
                                             className="mt-8 mb-16"
-                                            fullWidth
                                             required
+                                            error={form.senha === ''}
+                                            id="senha"
+                                            name="senha"
+                                            onChange={this.handleChange}
+                                            label="Senha"
+                                            type={'password'}
+                                            value={form.senha}
                                             variant="outlined"
-                                            type={this.state.showPassword ? 'text' : 'password'}
-                                            label="Password"
-                                            value={this.state.password}
-                                            //onChange={this.handleChange('password')}
+                                            fullWidth
                                             InputProps={{
                                                 endAdornment: (
                                                     <InputAdornment position="end">
@@ -227,29 +253,9 @@ class Product extends Component {
                                             }}
                                         />
 
+
                                     </div>
                                 )}
-                            {tabValue === 1 && (
-                                <div>
-                                    <div className="flex justify-center sm:justify-start flex-wrap">
-                                        {form.images.map(media => (
-                                            <div
-                                                onClick={() => this.setFeaturedImage(media.id)}
-                                                className={
-                                                    classNames(
-                                                        classes.productImageItem,
-                                                        "flex items-center justify-center relative w-128 h-128 rounded-4 mr-16 mb-16 overflow-hidden cursor-pointer",
-                                                        (media.id === form.featuredImageId) && 'featured')
-                                                }
-                                                key={media.id}
-                                            >
-                                                <Icon className={classes.productImageFeaturedStar}>star</Icon>
-                                                <img className="max-w-none w-auto h-full" src={media.url} alt="product" />
-                                            </div>
-                                        ))}
-                                    </div>
-                                </div>
-                            )}
                         </div>
                     )
                 }
@@ -263,7 +269,6 @@ function mapDispatchToProps(dispatch) {
     return bindActionCreators({
         getProduct: Actions.getProduct,
         newProduct: Actions.newProduct,
-        saveProduct: Actions.saveProduct
     }, dispatch);
 }
 
