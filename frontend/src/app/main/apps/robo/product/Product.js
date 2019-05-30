@@ -1,22 +1,28 @@
 import { FuseAnimate, FusePageCarded } from '@fuse';
 import _ from '@lodash';
 import { Button, Icon, IconButton, InputAdornment, Tab, Tabs, TextField, Typography, withStyles } from '@material-ui/core';
+import CircularProgress from '@material-ui/core/CircularProgress';
 import { orange } from '@material-ui/core/colors';
+import Dialog from '@material-ui/core/Dialog';
+import DialogActions from '@material-ui/core/DialogActions';
+import DialogContent from '@material-ui/core/DialogContent';
+import DialogContentText from '@material-ui/core/DialogContentText';
+import DialogTitle from '@material-ui/core/DialogTitle';
+import FormControl from '@material-ui/core/FormControl';
+import InputLabel from '@material-ui/core/InputLabel';
+import MenuItem from '@material-ui/core/MenuItem';
+import OutlinedInput from '@material-ui/core/OutlinedInput';
+import Select from '@material-ui/core/Select';
 import Visibility from '@material-ui/icons/Visibility';
 import VisibilityOff from '@material-ui/icons/VisibilityOff';
 import withReducer from 'app/store/withReducer';
+import axios from 'axios';
 import React, { Component } from 'react';
-import { makeStyles } from '@material-ui/core/styles';
 import connect from 'react-redux/es/connect/connect';
 import { Link, withRouter } from 'react-router-dom';
-import OutlinedInput from '@material-ui/core/OutlinedInput';
-import FormControl from '@material-ui/core/FormControl';
 import { bindActionCreators } from 'redux';
-import Select from '@material-ui/core/Select';
-import MenuItem from '@material-ui/core/MenuItem';
 import * as Actions from '../store/actions';
 import reducer from '../store/reducers';
-import InputLabel from '@material-ui/core/InputLabel';
 
 
 const styles = theme => ({
@@ -53,12 +59,15 @@ const styles = theme => ({
 
 
 class Product extends Component {
-
-    state = {
-        tabValue: 0,
-        form: null,
-        showPassword: 'password'
-    };
+    constructor(props) {
+        super(props);
+        this.state = {
+            tabValue: 0,
+            form: null,
+            showPassword: 'password',
+            setOpen: false,
+        };
+    }
 
     componentDidMount() {
         this.updateProductState();
@@ -101,8 +110,40 @@ class Product extends Component {
         this.setState({ form: _.set({ ...this.state.form }, event.target.name, event.target.type === 'checkbox' ? event.target.checked : event.target.value) });
     };
 
-    enviarDados() {
-        console.log('this.state.form', this.state.form)
+
+
+    async enviarDados() {
+        this.setState({ setOpen: true })
+        // console.log('this.state.form', this.state.form)
+        let request = await axios.post('http://localhost:9000/robo', {
+            frontUrl: 'https://www.kaggle.com/jboysen/global-food-prices',
+            frontNavegador: 'chrome',
+            login: 'grupo9',
+            email: "joao@gesec.com.br",
+            senha: 'MadFsACmuA5ENDF',
+        }).then(function (response) {
+            if ('Download Concluido' === response.data.status) {
+                console.log('response.data.status => 123', response.data.status)
+
+                //this.setState({ modalSucesso: true })
+            } else {
+
+            }
+            return true
+
+
+        }).catch(function (error) {
+            console.log(error);
+            return false
+        });
+
+        if (request) {
+
+        } else {
+
+        }
+        this.setState({ setOpen: false })
+
     }
 
     canBeSubmitted() {
@@ -115,7 +156,7 @@ class Product extends Component {
 
 
     render() {
-        const { tabValue, form } = this.state;
+        const { tabValue, form, setOpen, modalSucesso } = this.state;
         return (
             <FusePageCarded
                 classes={{
@@ -178,8 +219,54 @@ class Product extends Component {
                             {tabValue === 0 &&
                                 (
                                     <div>
+                                        <Dialog
+                                            open={modalSucesso}
+                                            onClose={modalSucesso}
+                                            aria-labelledby="alert-dialog-title"
+                                            aria-describedby="alert-dialog-description" >
+                                            <DialogTitle id="alert-dialog-title">{"Aviso !!!"}</DialogTitle>
+                                            <DialogContent >
+                                                <DialogContentText id="alert-dialog-description">
+                                                    Download Concluido com Sucesso
+                                                </DialogContentText>
+                                                <br />
+                                                <br />
+                                                <DialogContentText id="alert-dialog-description">
+                                                    <i class="material-icons"> check_circle_outline</i>
+                                                </DialogContentText>
 
-                                        <FormControl className="mt-8 mb-16" required id="navegador" labelWidth={''} error={form.url === ''} fullWidth variant="outlined" >
+
+                                            </DialogContent>
+                                            <DialogActions>
+                                                <Button onClick={() => this.setState({ modalSucesso: false })} color="primary">
+                                                    Fechar
+                                                </Button>
+                                            </DialogActions>
+                                        </Dialog>
+                                        <Dialog
+                                            open={setOpen}
+                                            onClose={setOpen}
+                                            aria-labelledby="alert-dialog-title"
+                                            aria-describedby="alert-dialog-description" >
+                                            <DialogTitle id="alert-dialog-title">{"Aviso !!!"}</DialogTitle>
+                                            <DialogContent >
+                                                <DialogContentText id="alert-dialog-description">
+                                                    Aguarde até o finalizamento do download...
+                                                </DialogContentText>
+                                                <br />
+                                                <br />
+                                                <DialogContentText id="alert-dialog-description">
+                                                    <CircularProgress style={{ marginLeft: '45%', marginRight: '45%' }} disableShrink />
+                                                </DialogContentText>
+                                            </DialogContent>
+                                            <DialogActions>
+                                                <Button />
+                                                <Button />
+                                            </DialogActions>
+                                        </Dialog>
+
+
+                                        <FormControl className="mt-8 mb-16" required id="navegador" error={form.url === ''} fullWidth variant="outlined" >
                                             <InputLabel htmlFor="outlined-age-simple">
                                                 Navegador
                                             </InputLabel>

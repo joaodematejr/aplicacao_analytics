@@ -1,2 +1,2 @@
-export const END_POINT = 'localhost:9000';
+export const END_POINT = 'http://localhost:9000';
 

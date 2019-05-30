@@ -1982,18 +1982,6 @@ const projectDashboardAppDB = {
             'id': 1,
             'name': 'Dashboards 1 App'
         },
-        {
-            'id': 2,
-            'name': 'Dashboards 2 App'
-        },
-        {
-            'id': 3,
-            'name': 'Dashboards 3 App'
-        },
-        {
-            'id': 4,
-            'name': 'Dashboards 4 App'
-        }
     ]
 };
 

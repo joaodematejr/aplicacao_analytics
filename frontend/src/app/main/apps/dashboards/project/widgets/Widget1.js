@@ -12,7 +12,7 @@ const styles = theme => ({
 
 class Widget1 extends Component {
     state = {
-        /*  currentRange: this.props.widget.currentRange */
+        currentRange: this.props.widget.currentRange
     };
 
     handleChangeSelect = (ev) => {

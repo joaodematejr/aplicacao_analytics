@@ -24,7 +24,7 @@ class AnalyticsDashboardApp extends Component {
     componentDidMount = () => {
         this.props.getWidgets();
         const socket = socketIOClient(END_POINT);
-        socket.on('analytics', function (data) {
+        socket.on('paises', function (data) {
             console.log('recebi o evento !!! Widget', data)
         })
     }
@@ -89,6 +89,7 @@ class AnalyticsDashboardApp extends Component {
 
                         <div className="flex flex-wrap w-full md:w-320 pt-16">
 
+
                             <div className="mb-32 w-full sm:w-1/2 md:w-full">
                                 <FuseAnimate delay={600}>
                                     <Typography className="px-16 pb-8 text-18 font-300">
@@ -124,6 +125,7 @@ class AnalyticsDashboardApp extends Component {
                                     <Widget9 data={widgets.widget9} />
                                 </div>
                             </div>
+
                         </div>
                     </div>
                 </FuseAnimate>

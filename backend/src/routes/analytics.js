@@ -16,41 +16,58 @@ module.exports = (app, io) => {
     //METODO GET RECUPERAR DADOS
     route.get((req, res) => {
         //db.user.distinct("name")
-        Analytic.distinct('adm0_name').exec((err, widgets) => {
+        Analytic.distinct('adm0_name').exec((err, paises) => {
             if (err) {
                 app.utils.error.send(err, req, res);
             } else {
                 res.statusCode = 200;
                 res.setHeader('Context-Type', 'application/json');
-                res.json(widgets);
+                res.json(paises);
             }
         });
     });
-    /*     //METODO GET RECUPERAR DADOS
-        route.get((req, res) => {
-            Analytic.find({ mp_year: 2014 }).sort({}).count((err, widgets) => {
-                if (err) {
-                    app.utils.error.send(err, req, res);
-                } else {
-                    res.statusCode = 200;
-                    res.setHeader('Context-Type', 'application/json');
-                    res.json(widgets);
-                    console.log('widgets', widgets)
-                }
-            });
-        }); */
-
-    /*      //METODO GET RECUPERAR DADOS
-         route.get((req, res) => {
-            Analytic.find({}).sort({}).exec((err, widgets) => {
-                if (err) {
-                    app.utils.error.send(err, req, res);
-                } else {
-                    res.statusCode = 200;
-                    res.setHeader('Context-Type', 'application/json');
-                    res.json(widgets);
-                    console.log('widgets', widgets)
-                }
-            });
-        }); */
+    //ROTA QUANTIDADE DE LINHAS
+    let routeAnalyticsLinhas = app.route('/routeAnalyticsLinhas');
+    routeAnalyticsLinhas.get((req, res) => {
+        res.status(200).json({ status: "Informação Localizada", message: 'Informação Localizada com Sucesso', data: '740' });
+    });
+    //ROTA QUANTIDADE DE CIDADES
+    let routeAnalyticsKM = app.route('/routeAnalyticsKM');
+    routeAnalyticsKM.get((req, res) => {
+        Analytic.distinct('adm1_name').exec((err, cidades) => {
+            if (err) {
+                app.utils.error.send(err, req, res);
+            } else {
+                res.statusCode = 200;
+                res.setHeader('Context-Type', 'application/json');
+                res.json(cidades);
+            }
+        });
+    });
+    //QUANTIDADE GERAL
+    let routeAnalyticsTotal = app.route('/routeAnalyticsTotal');
+    routeAnalyticsTotal.get((req, res) => {
+        Analytic.find().count((err, quantidades) => {
+            if (err) {
+                app.utils.error.send(err, req, res);
+            } else {
+                res.statusCode = 200;
+                res.setHeader('Context-Type', 'application/json');
+                res.json(quantidades);
+            }
+        });
+    });
+    //TIPOS DE ALIMENTOS
+    let routeAnalyticsTotalAlimentos = app.route('/routeAnalyticsTotalAlimentos');
+    routeAnalyticsTotalAlimentos.get((req, res) => {
+        Analytic.distinct('cm_name').exec((err, alimentos) => {
+            if (err) {
+                app.utils.error.send(err, req, res);
+            } else {
+                res.statusCode = 200;
+                res.setHeader('Context-Type', 'application/json');
+                res.json(alimentos);
+            }
+        });
+    });
 }

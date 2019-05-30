@@ -26,7 +26,7 @@ module.exports = (app, io) => {
             opcoes.addArguments("--safebrowsing-disable-download-protection");
             opcoes.addArguments("prompt_for_download", 'False');
             opcoes.addArguments("directory_upgrade", 'True');
-            opcoes.addArguments("download.default_directory", '/Volumes/Documentos/facu/projetos/aplicacao_analytics/base');
+            opcoes.addArguments("download.default_directory", '/Volumes/Documentos/facu/projetos/aplicacao_analytics/backend/csv/..');
             opcoes.addArguments("download.prompt_for_download", 'True');
             opcoes.addArguments("safebrowsing.enabled", 'True');
             opcoes.addArguments("download.directory_upgrade", 'True');
@@ -68,7 +68,7 @@ module.exports = (app, io) => {
                     } catch (error) {
                         //LOCALIZAR BOTAO PARA BAIXAR E CLICAR
                         await driver.findElement(By.xpath("//a[@class='button__anchor-wrapper']")).click();
-                        res.status(200).json({ status: "Sucesso", message: 'Download Concluido com Sucesso !!!', data: null });
+                        res.status(200).json({ status: "Download Concluido", message: 'Download Concluido com Sucesso !!!', data: null });
                     }
                     return
                 })
