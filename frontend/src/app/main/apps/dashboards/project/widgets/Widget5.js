@@ -1,27 +1,43 @@
-import React, {Component} from 'react';
-import {Typography, Paper, Button} from '@material-ui/core';
-import {Bar, Line} from 'react-chartjs-2';
+import { Button, Paper, Typography } from '@material-ui/core';
 import _ from 'lodash';
+import { fuseDark } from '@fuse/fuse-colors';
+import React, { Component } from 'react';
+import lightBlue from '@material-ui/core/colors/lightBlue';
+import { Bar, Line } from 'react-chartjs-2';
+
+const data = {
+    labels: ['January', 'February', 'March', 'April', 'May', 'June', 'July'],
+    datasets: [
+        {
+            label: 'My First dataset',
+            backgroundColor: '#3C4252',
+            borderColor: '#424242',
+            borderWidth: 1,
+            hoverBackgroundColor: lightBlue[700],
+            hoverBorderColor: lightBlue[700],
+            data: [65, 59, 80, 81, 56, 55, 40]
+        }
+    ]
+};
 
 class Widget5 extends Component {
     state = {
-        currentRange: 'TW'
+        currentRange: 'TW',
     };
 
     handleChangeRange = (currentRange) => {
-        this.setState({currentRange});
+        this.setState({ currentRange });
     };
 
-    render()
-    {
-        const {widget: widgetRaw} = this.props;
-        const {currentRange} = this.state;
+    render() {
+        const { widget: widgetRaw } = this.props;
+        const { currentRange } = this.state;
         const widget = _.merge({}, widgetRaw);
 
         return (
             <Paper className="w-full rounded-8 shadow-none border-1">
                 <div className="flex items-center justify-between px-16 py-16 border-b-1">
-                    <Typography className="text-16">{widget.title}</Typography>
+                    <Typography className="text-16">Gráfico</Typography>
                     <div className="items-center">
                         {Object.entries(widget.ranges).map(([key, n]) => {
                             return (
@@ -41,10 +57,7 @@ class Widget5 extends Component {
                 <div className="flex flex-row flex-wrap">
                     <div className="w-full md:w-1/2 p-8 min-h-420 h-420">
                         <Bar
-                            data={{
-                                labels  : widget.mainChart[currentRange].labels,
-                                datasets: widget.mainChart[currentRange].datasets
-                            }}
+                            data={data}
                             options={widget.mainChart.options}
                         />
                     </div>
@@ -57,7 +70,7 @@ class Widget5 extends Component {
                                     <div className="h-64 w-full">
                                         <Line
                                             data={{
-                                                labels  : item.chart[currentRange].labels,
+                                                labels: item.chart[currentRange].labels,
                                                 datasets: item.chart[currentRange].datasets
                                             }}
                                             options={item.chart.options}

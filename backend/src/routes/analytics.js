@@ -31,16 +31,16 @@ module.exports = (app, io) => {
     routeAnalyticsLinhas.get((req, res) => {
         res.status(200).json({ status: "Informação Localizada", message: 'Informação Localizada com Sucesso', data: '740' });
     });
-    //ROTA QUANTIDADE DE CIDADES
+    //ROTA QUANTIDADE DE PROVINCIA
     let routeAnalyticsKM = app.route('/routeAnalyticsKM');
     routeAnalyticsKM.get((req, res) => {
-        Analytic.distinct('adm1_name').exec((err, cidades) => {
+        Analytic.distinct('adm1_name').exec((err, província) => {
             if (err) {
                 app.utils.error.send(err, req, res);
             } else {
                 res.statusCode = 200;
                 res.setHeader('Context-Type', 'application/json');
-                res.json(cidades);
+                res.json(província);
             }
         });
     });
@@ -57,16 +57,29 @@ module.exports = (app, io) => {
             }
         });
     });
-    //TIPOS DE ALIMENTOS
-    let routeAnalyticsTotalAlimentos = app.route('/routeAnalyticsTotalAlimentos');
-    routeAnalyticsTotalAlimentos.get((req, res) => {
-        Analytic.distinct('cm_name').exec((err, alimentos) => {
+    //QUANTIDADE DE CIDADES
+    let routeAnalyticsTotalCidades = app.route('/routeAnalyticsTotalCidades');
+    routeAnalyticsTotalCidades.get((req, res) => {
+        Analytic.distinct('mkt_name').exec((err, cidades) => {
             if (err) {
                 app.utils.error.send(err, req, res);
             } else {
                 res.statusCode = 200;
                 res.setHeader('Context-Type', 'application/json');
-                res.json(alimentos);
+                res.json(cidades);
+            }
+        });
+    });
+    //METODO GET ANO
+    let routeAnalyticsAno = app.route('/routeAnalyticsAno');
+    routeAnalyticsAno.get((req, res) => {
+        Analytic.distinct('mp_year').exec((err, ano) => {
+            if (err) {
+                app.utils.error.send(err, req, res);
+            } else {
+                res.statusCode = 200;
+                res.setHeader('Context-Type', 'application/json');
+                res.json(ano);
             }
         });
     });

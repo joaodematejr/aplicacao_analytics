@@ -12,14 +12,8 @@ const navigationConfig = [
                 'icon': 'dashboard',
                 'children': [
                     {
-                        'id': 'analytics-dashboard',
-                        'title': 'Análise V1',
-                        'type': 'item',
-                        'url': '/apps/dashboards/analytics'
-                    },
-                    {
                         'id': 'project-dashboard',
-                        'title': 'Análise V2',
+                        'title': 'Análise',
                         'type': 'item',
                         'url': '/apps/dashboards/project'
                     }

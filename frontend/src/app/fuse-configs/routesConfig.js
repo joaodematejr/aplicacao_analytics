@@ -20,10 +20,10 @@ const routes = [
     {
         path: '/',
         exact: true,
-        component: () => <Redirect to="/apps/dashboards/analytics" />
+        component: () => <Redirect to="/apps/dashboards/project" />
     },
     {
-        component: () => <Redirect to="/apps/dashboards/analytics" />
+        component: () => <Redirect to="/apps/dashboards/project" />
     }
 ];
 

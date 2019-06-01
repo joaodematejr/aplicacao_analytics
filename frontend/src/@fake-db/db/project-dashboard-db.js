@@ -2,68 +2,6 @@ import mock from './../mock';
 
 const projectDashboardAppDB = {
     widgets: {
-        'widget1': {
-            'ranges': {
-                'DY': 'Ontem',
-                'DT': 'Hoje',
-                'DTM': 'Amanhã'
-            },
-            'currentRange': 'DT',
-            'data': {
-                'label': 'TAREFAS DEVIDO',
-                'count': {
-                    'DY': 21,
-                    'DT': 25,
-                    'DTM': 19
-                },
-                'extra': {
-                    'label': 'Completed',
-                    'count': {
-                        'DY': 6,
-                        'DT': 7,
-                        'DTM': '-'
-                    }
-
-                }
-            },
-            'detail': 'You can show some detailed information about this widget in here.'
-        },
-        'widget2': {
-            'title': 'Overdue',
-            'data': {
-                'label': 'TASKS',
-                'count': 4,
-                'extra': {
-                    'label': 'Yesterday\'s overdue',
-                    'count': 2
-                }
-            },
-            'detail': 'You can show some detailed information about this widget in here.'
-        },
-        'widget3': {
-            'title': 'Issues',
-            'data': {
-                'label': 'OPEN',
-                'count': 32,
-                'extra': {
-                    'label': 'Closed today',
-                    'count': 0
-                }
-            },
-            'detail': 'You can show some detailed information about this widget in here.'
-        },
-        'widget4': {
-            'title': 'Features',
-            'data': {
-                'label': 'PROPOSALS',
-                'count': 42,
-                'extra': {
-                    'label': 'Implemented',
-                    'count': 8
-                }
-            },
-            'detail': 'You can show some detailed information about this widget in here.'
-        },
         'widget5': {
             'title': 'Lorem ipsum',
             'ranges': {
@@ -78,7 +16,7 @@ const projectDashboardAppDB = {
                         {
                             type: 'bar',
                             label: 'Issues',
-                            data: [42, 28, 43, 34, 20, 25, 22],
+                            data: [0, 0, 0, 0, 0, 0, 22],
                             backgroundColor: '#42BFF7',
                             hoverBackgroundColor: '#87cdf7'
                         },
