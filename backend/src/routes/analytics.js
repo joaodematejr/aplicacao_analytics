@@ -83,4 +83,15 @@ module.exports = (app, io) => {
             }
         });
     });
+    //FILTRO POR PAIS
+    let routeAnalyticsPais = app.route('/routeAnalyticsPais');
+    routeAnalyticsPais.post((req, res) => {
+        Analytic.find({ adm0_name: req.body.pais }, { pt_name: 0, _id: 0, um_id: 0, um_name: 0, mp_commoditysource: 0, adm0_id: 0, adm1_id: 0, mkt_id: 0, cm_id: 0, adm1_name: 0, mkt_name: 0, cur_id: 0, cur_name: 0, cm_name: 0, pt_id: 0 }).exec((err, pais) => {
+            if (err) {
+                app.utils.error.send(err, req, res);
+            } else {
+                res.json({ status: "Pais Localizado", message: "Pais Localizado", data: pais });
+            }
+        });
+    });
 }
