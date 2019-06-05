@@ -140,7 +140,7 @@ class Product extends Component {
                             <div className="flex flex-col items-start max-w-full">
 
                                 <FuseAnimate animation="transition.slideRightIn" delay={300}>
-                                    <Typography className="normal-case flex items-center sm:mb-12" component={Link} role="button" to="/apps/dashboards/analytics">
+                                    <Typography className="normal-case flex items-center sm:mb-12" component={Link} role="button" to="/apps/dashboards/project">
                                         <Icon className="mr-4 text-20">arrow_back</Icon>
                                         Importação
                                     </Typography>

@@ -5,13 +5,28 @@ var dataForge = require('data-forge');
 require('data-forge-fs');
 require('data-forge-plot');
 
-module.exports = (app, io) => {
-    let route = app.route('/tratarArquivos');
-    //TRATAR DADOS
+module.exports = (app) => {
+    let route = app.route('/localizarArquivo');
+    //LISTAR COLUNAS CSV
     route.post((req, res) => {
-        let dataFrame = dataForge.readFileSync('/Volumes/Documentos/facu/projetos/aplicacao_analytics/backend/csv/01.csv').parseCSV();
-        let arrayOfObjs = dataFrame.toArray();
-        console.log(arrayOfObjs);
-        res.status(200).json({ status: "Sucesso", message: arrayOfObjs, data: null });
+        var arquivoCSV = dataForge.readFileSync('/Volumes/Documentos/facu/projetos/aplicacao_analytics/backend/csv/wfp_market_food_prices.csv').parseCSV();
+        let listaColunas = arquivoCSV.getColumnNames();
+        res.status(200).json({ status: "Sucesso", message: "Lista de Colunas Localizada", data: listaColunas });
+    });
+
+    //IMPORTAR CSV
+    let importCsv = app.route('/importCsv');
+    importCsv.post((req, res) => {
+        listaColunhas = []
+
+        req.body.listaColunasCSV.forEach(element => {
+            listaColunhas.push(element.colunas)
+        });
+
+        var arquivoCSV = dataForge.readFileSync('/Volumes/Documentos/facu/projetos/aplicacao_analytics/backend/csv/wfp_market_food_prices.csv').parseCSV();
+        var newDf = arquivoCSV.dropSeries(listaColunhas);
+
+        console.log(newDf.between(0, 2).toString());
+        res.status(200).json({ status: "Sucesso", message: 'Concluido Com Sucesso', data: newDf.between(0, 2).toString() });
     });
 }

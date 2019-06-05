@@ -38,6 +38,7 @@ export function newProduct() {
         login: '',
         senha: '',
         navegador: '',
+        csvColuna: '',
 
     };
 

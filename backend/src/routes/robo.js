@@ -9,13 +9,13 @@ module.exports = (app, io) => {
     route.post((req, res) => {
         //VALIDAÇÕES DO FRONT-END
         if (req.body.frontNavegador === '') {
-            res.status(500).json({ status: "Error no sistema", message: 'Navegador Vazio !!!', error, error, data: null });
+            res.status(200).json({ status: "Error no sistema", message: 'Navegador Vazio !!!', data: null });
         } else if (req.body.frontUrl === '') {
-            res.status(500).json({ status: "Error no sistema", message: 'Url do site Vazio !!!', error, error, data: null });
+            res.status(200).json({ status: "Error no sistema", message: 'Url do site Vazio !!!', data: null });
         } else if (req.body.login === '') {
-            res.status(500).json({ status: "Error no sistema", message: 'Login em branco !!!', error, error, data: null });
+            res.status(200).json({ status: "Error no sistema", message: 'Login em branco !!!', data: null });
         } else if (req.body.senha === '') {
-            res.status(500).json({ status: "Error no sistema", message: 'Senha em branco!!!', error, error, data: null });
+            res.status(200).json({ status: "Error no sistema", message: 'Senha em branco!!!', data: null });
         } else {
 
             var opcoes = new chrome.Options();
@@ -30,7 +30,6 @@ module.exports = (app, io) => {
             opcoes.addArguments("download.prompt_for_download", 'True');
             opcoes.addArguments("safebrowsing.enabled", 'True');
             opcoes.addArguments("download.directory_upgrade", 'True');
-
 
             //INICIAR NAVEGADOR
             driver = new Builder(opcoes).forBrowser(req.body.frontNavegador).setChromeOptions(opcoes).build();

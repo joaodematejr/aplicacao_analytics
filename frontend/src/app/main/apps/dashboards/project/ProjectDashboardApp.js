@@ -1,9 +1,7 @@
 import { FuseAnimateGroup, FusePageSimple } from '@fuse';
 import { Button, Card, Hidden, Icon, IconButton, Menu, MenuItem, Paper, Tab, Tabs, Typography, withStyles } from '@material-ui/core';
 import CircularProgress from '@material-ui/core/CircularProgress';
-import { fuseDark } from '@fuse/fuse-colors';
 import lightBlue from '@material-ui/core/colors/lightBlue';
-import red from '@material-ui/core/colors/red';
 import Dialog from '@material-ui/core/Dialog';
 import DialogActions from '@material-ui/core/DialogActions';
 import DialogContent from '@material-ui/core/DialogContent';
@@ -14,6 +12,7 @@ import axios from 'axios';
 import classNames from 'classnames';
 import _ from 'lodash';
 import React, { Component } from 'react';
+import { Scatter } from 'react-chartjs-2';
 import ReactMapboxGl, { Feature, Layer, RotationControl, ScaleControl, ZoomControl } from "react-mapbox-gl";
 import { connect } from 'react-redux';
 import { withRouter } from 'react-router-dom';
@@ -21,10 +20,7 @@ import { bindActionCreators } from 'redux';
 import { END_POINT } from '../../../../../endPoint';
 import * as Actions from './store/actions';
 import reducer from './store/reducers';
-import Widget10 from './widgets/Widget10';
 import Widget11 from './widgets/Widget11';
-import { Scatter } from 'react-chartjs-2';
-
 const Map = ReactMapboxGl({
     accessToken: "pk.eyJ1Ijoiam9hb2RlbWF0ZWpyIiwiYSI6ImNqd2JnbzY4MDA0ZW40NHBwa244cXF2MzcifQ.W3GVhR_EUO_ZxaQO2W5mug"
 });
@@ -107,7 +103,7 @@ class ProjectDashboardApp extends Component {
 
     render() {
         const { widgets, projects, classes } = this.props;
-        const { tabValue, projectMenuEl, responseJson, linhasAnalisadas, routeAnalyticsKM, analyticsTotalCidades, setOpen, resultadoFinal, datasets } = this.state;
+        const { tabValue, projectMenuEl, responseJson, linhasAnalisadas, routeAnalyticsKM, analyticsTotalCidades, setOpen, resultadoFinal } = this.state;
 
 
         if (!widgets || !projects) {
@@ -500,8 +496,8 @@ class ProjectDashboardApp extends Component {
                                                 datasets: [
                                                     {
                                                         label: 'Erro 404',
-                                                        fill: false,
-                                                        showLine: true,  //!\\ Add this line
+                                                        fill: true,
+                                                        showLine: false,  //!\\ Add this line
                                                         backgroundColor: lightBlue[400],
                                                         pointBorderColor: lightBlue[600],
                                                         pointBackgroundColor: '#fff',
@@ -524,7 +520,7 @@ class ProjectDashboardApp extends Component {
                                     <Widget9 widget={widgets.widget9} />
                                 </div> */}
                                 <div className="widget flex w-full p-12">
-                                    <Widget10 widget={widgets.widget10} />
+                                    {/*  <Widget10 widget={widgets.widget10} /> */}
                                 </div>
                             </FuseAnimateGroup>
                         )}
