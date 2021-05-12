@@ -11,7 +11,7 @@
     "axios": "0.18.0",
     "axios-mock-adapter": "1.16.0",
     "babel-polyfill": "7.0.0-beta.3",
-    "chart.js": "2.8.0",
+    "chart.js": "2.9.4",
     "date-fns": "2.0.0-alpha.27",
     "downshift": "3.2.7",
     "firebase": "5.9.1",
