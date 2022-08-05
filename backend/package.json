@@ -29,7 +29,7 @@
     "express": "^4.17.1",
     "fs": "0.0.1-security",
     "jest": "24.8.0",
-    "mongoose": "^5.5.12",
+    "mongoose": "^5.7.5",
     "nodemon": "^1.19.1",
     "selenium-drivers": "^2.1.0",
     "selenium-webdriver": "^4.0.0-alpha.1",
