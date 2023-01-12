@@ -23,7 +23,7 @@
     "chromedriver": "^74.0.0",
     "consign": "^0.1.6",
     "cors": "^2.8.5",
-    "data-forge": "^1.7.2",
+    "data-forge": "^1.9.6",
     "data-forge-fs": "0.0.6",
     "data-forge-plot": "^0.4.5",
     "express": "^4.17.1",
